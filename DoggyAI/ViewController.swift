@@ -1,7 +1,12 @@
 //
-//  ViewController.swift
+//
 //  DoggyAI
 //
+// Created April 2016
+// Ryan Lucas
+// aussies.ca
+//  ViewController.swift
+//  https://github.com/drlucas/doggyAI
 //
 /*
  
