@@ -7,23 +7,159 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		943E62C31CAEE34F00177CD4 /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9437E8691CAEE18A00F20CA6 /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		943E62EA1CAEEE9900177CD4 /* Prephirences.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 943E62E21CAEE4BA00177CD4 /* Prephirences.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */; };
+		94F6AC6F1CB0B338006FFB8F /* DogStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC6E1CB0B338006FFB8F /* DogStructure.swift */; };
+		94F6AC771CB2D5C6006FFB8F /* EPCalendarPicker in Resources */ = {isa = PBXBuildFile; fileRef = 94F6AC761CB2D5C6006FFB8F /* EPCalendarPicker */; };
+		94F6AC831CB33E23006FFB8F /* EPCalendarCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC7C1CB33E23006FFB8F /* EPCalendarCell1.swift */; };
+		94F6AC841CB33E23006FFB8F /* EPCalendarCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F6AC7D1CB33E23006FFB8F /* EPCalendarCell1.xib */; };
+		94F6AC851CB33E23006FFB8F /* EPCalendarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC7E1CB33E23006FFB8F /* EPCalendarConstants.swift */; };
+		94F6AC861CB33E23006FFB8F /* EPCalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC7F1CB33E23006FFB8F /* EPCalendarHeaderView.swift */; };
+		94F6AC871CB33E23006FFB8F /* EPCalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F6AC801CB33E23006FFB8F /* EPCalendarHeaderView.xib */; };
+		94F6AC881CB33E23006FFB8F /* EPCalendarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC811CB33E23006FFB8F /* EPCalendarPicker.swift */; };
+		94F6AC891CB33E23006FFB8F /* EPExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC821CB33E23006FFB8F /* EPExtensions.swift */; };
 		9EA98E901CA5773E0062B2C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98E8F1CA5773E0062B2C7 /* AppDelegate.swift */; };
 		9EA98E921CA5773E0062B2C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98E911CA5773E0062B2C7 /* ViewController.swift */; };
-		9EA98E951CA5773E0062B2C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98E931CA5773E0062B2C7 /* Main.storyboard */; };
-		9EA98E981CA5773E0062B2C7 /* DoggyAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98E961CA5773E0062B2C7 /* DoggyAI.xcdatamodeld */; };
 		9EA98E9A1CA5773E0062B2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98E991CA5773E0062B2C7 /* Assets.xcassets */; };
-		9EA98E9D1CA5773E0062B2C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98E9B1CA5773E0062B2C7 /* LaunchScreen.storyboard */; };
+		9EA98EA51CA5A2DB0062B2C7 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98EA41CA5A2DB0062B2C7 /* SwiftyJSON.swift */; };
+		9EA98ECF1CA5A3300062B2C7 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98ECE1CA5A3300062B2C7 /* Services.swift */; };
+		9EA98ED11CA5A3590062B2C7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98ED01CA5A3590062B2C7 /* WebViewController.swift */; };
+		9EA98EED1CA614400062B2C7 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98EEC1CA614400062B2C7 /* Services.plist */; };
+		9EA98EEF1CA614E40062B2C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98EEE1CA614E40062B2C7 /* InfoPlist.strings */; };
+		9EA98F0A1CA74D760062B2C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98F091CA74D760062B2C7 /* Main.storyboard */; };
+		9EA98F1C1CA86CD10062B2C7 /* DogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98F1B1CA86CD10062B2C7 /* DogTableViewCell.swift */; };
+		9EA98F201CA8C4210062B2C7 /* dogbone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98F1F1CA8C4210062B2C7 /* dogbone.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		9437E8641CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F435027A1A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
+		9437E8661CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F451E3C5195B8CD80051434C;
+			remoteInfo = OAuthSwiftDemo;
+		};
+		9437E8681CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
+			remoteInfo = OAuthSwiftOSX;
+		};
+		9437E86A1CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
+			remoteInfo = OAuthSwiftOSXDemo;
+		};
+		9437E86C1CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4B6EE1E1BF74CE300443596;
+			remoteInfo = OAuthSwiftTVOS;
+		};
+		9437E86E1CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C40890C01C11B37000E3146A;
+			remoteInfo = OAuthSwiftWatchOS;
+		};
+		9437E8701CAEE18A00F20CA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
+			remoteInfo = OAuthSwiftTests;
+		};
+		943E62DF1CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42114DB1AE7D84900A09DD9;
+			remoteInfo = PrephirencesiOS;
+		};
+		943E62E11CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42114FE1AE7D8E200A09DD9;
+			remoteInfo = PrephirencesMacOSX;
+		};
+		943E62E31CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07FC415E1BE66517005F195C;
+			remoteInfo = PrephirencesWatchos;
+		};
+		943E62E51CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07FC417A1BE670BF005F195C;
+			remoteInfo = PrephirencesTvOS;
+		};
+		943E62E71CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4FF650B1B6B7C7300BFE4F4;
+			remoteInfo = PrephirencesiOSTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9EA98F081CA74D400062B2C7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				943E62EA1CAEEE9900177CD4 /* Prephirences.framework in Embed Frameworks */,
+				943E62C31CAEE34F00177CD4 /* OAuthSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
+		943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Prephirences.xcodeproj; path = "../Prephirences-master/Prephirences.xcodeproj"; sourceTree = "<group>"; };
+		94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoggyDetailsViewController.swift; sourceTree = "<group>"; };
+		94F6AC6E1CB0B338006FFB8F /* DogStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogStructure.swift; sourceTree = "<group>"; };
+		94F6AC761CB2D5C6006FFB8F /* EPCalendarPicker */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EPCalendarPicker; path = /Users/ryan/Downloads/DoggyAI/EPCalendarPicker; sourceTree = "<absolute>"; };
+		94F6AC7C1CB33E23006FFB8F /* EPCalendarCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPCalendarCell1.swift; path = EPCalendarPicker/EPCalendarCell1.swift; sourceTree = "<group>"; };
+		94F6AC7D1CB33E23006FFB8F /* EPCalendarCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EPCalendarCell1.xib; path = EPCalendarPicker/EPCalendarCell1.xib; sourceTree = "<group>"; };
+		94F6AC7E1CB33E23006FFB8F /* EPCalendarConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPCalendarConstants.swift; path = EPCalendarPicker/EPCalendarConstants.swift; sourceTree = "<group>"; };
+		94F6AC7F1CB33E23006FFB8F /* EPCalendarHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPCalendarHeaderView.swift; path = EPCalendarPicker/EPCalendarHeaderView.swift; sourceTree = "<group>"; };
+		94F6AC801CB33E23006FFB8F /* EPCalendarHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EPCalendarHeaderView.xib; path = EPCalendarPicker/EPCalendarHeaderView.xib; sourceTree = "<group>"; };
+		94F6AC811CB33E23006FFB8F /* EPCalendarPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPCalendarPicker.swift; path = EPCalendarPicker/EPCalendarPicker.swift; sourceTree = "<group>"; };
+		94F6AC821CB33E23006FFB8F /* EPExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPExtensions.swift; path = EPCalendarPicker/EPExtensions.swift; sourceTree = "<group>"; };
 		9EA98E8C1CA5773E0062B2C7 /* DoggyAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoggyAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA98E8F1CA5773E0062B2C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EA98E911CA5773E0062B2C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9EA98E941CA5773E0062B2C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9EA98E971CA5773E0062B2C7 /* DoggyAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DoggyAI.xcdatamodel; sourceTree = "<group>"; };
 		9EA98E991CA5773E0062B2C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9EA98E9C1CA5773E0062B2C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9EA98E9E1CA5773E0062B2C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EA98EA41CA5A2DB0062B2C7 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		9EA98ECE1CA5A3300062B2C7 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		9EA98ED01CA5A3590062B2C7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		9EA98EEC1CA614400062B2C7 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
+		9EA98EEE1CA614E40062B2C7 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		9EA98F091CA74D760062B2C7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9EA98F1B1CA86CD10062B2C7 /* DogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DogTableViewCell.swift; path = ../DogTableViewCell.swift; sourceTree = "<group>"; };
+		9EA98F1F1CA8C4210062B2C7 /* dogbone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogbone.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,9 +173,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9437E85B1CAEE18A00F20CA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9437E8651CAEE18A00F20CA6 /* OAuthSwift.framework */,
+				9437E8671CAEE18A00F20CA6 /* OAuthSwiftDemo.app */,
+				9437E8691CAEE18A00F20CA6 /* OAuthSwift.framework */,
+				9437E86B1CAEE18A00F20CA6 /* OAuthSwiftOSXDemo.app */,
+				9437E86D1CAEE18A00F20CA6 /* OAuthSwift.framework */,
+				9437E86F1CAEE18A00F20CA6 /* OAuthSwift.framework */,
+				9437E8711CAEE18A00F20CA6 /* OAuthSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		943E62D81CAEE4BA00177CD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				943E62E01CAEE4BA00177CD4 /* Prephirences.framework */,
+				943E62E21CAEE4BA00177CD4 /* Prephirences.framework */,
+				943E62E41CAEE4BA00177CD4 /* Prephirences.framework */,
+				943E62E61CAEE4BA00177CD4 /* Prephirences.framework */,
+				943E62E81CAEE4BA00177CD4 /* PrephirencesiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94F6AC8A1CB33E39006FFB8F /* calendar files */ = {
+			isa = PBXGroup;
+			children = (
+				94F6AC7F1CB33E23006FFB8F /* EPCalendarHeaderView.swift */,
+				94F6AC801CB33E23006FFB8F /* EPCalendarHeaderView.xib */,
+				94F6AC811CB33E23006FFB8F /* EPCalendarPicker.swift */,
+				94F6AC821CB33E23006FFB8F /* EPExtensions.swift */,
+				94F6AC7E1CB33E23006FFB8F /* EPCalendarConstants.swift */,
+				94F6AC7C1CB33E23006FFB8F /* EPCalendarCell1.swift */,
+				94F6AC7D1CB33E23006FFB8F /* EPCalendarCell1.xib */,
+			);
+			name = "calendar files";
+			sourceTree = "<group>";
+		};
 		9EA98E831CA5773E0062B2C7 = {
 			isa = PBXGroup;
 			children = (
+				9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */,
+				943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */,
 				9EA98E8E1CA5773E0062B2C7 /* DoggyAI */,
 				9EA98E8D1CA5773E0062B2C7 /* Products */,
 			);
@@ -56,13 +234,21 @@
 		9EA98E8E1CA5773E0062B2C7 /* DoggyAI */ = {
 			isa = PBXGroup;
 			children = (
-				9EA98E8F1CA5773E0062B2C7 /* AppDelegate.swift */,
+				94F6AC8A1CB33E39006FFB8F /* calendar files */,
+				9EA98F1F1CA8C4210062B2C7 /* dogbone.png */,
+				9EA98EA41CA5A2DB0062B2C7 /* SwiftyJSON.swift */,
+				9EA98ED01CA5A3590062B2C7 /* WebViewController.swift */,
+				94F6AC6E1CB0B338006FFB8F /* DogStructure.swift */,
+				9EA98ECE1CA5A3300062B2C7 /* Services.swift */,
 				9EA98E911CA5773E0062B2C7 /* ViewController.swift */,
-				9EA98E931CA5773E0062B2C7 /* Main.storyboard */,
+				9EA98F1B1CA86CD10062B2C7 /* DogTableViewCell.swift */,
+				94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */,
+				9EA98E8F1CA5773E0062B2C7 /* AppDelegate.swift */,
+				9EA98EEC1CA614400062B2C7 /* Services.plist */,
 				9EA98E991CA5773E0062B2C7 /* Assets.xcassets */,
-				9EA98E9B1CA5773E0062B2C7 /* LaunchScreen.storyboard */,
+				9EA98F091CA74D760062B2C7 /* Main.storyboard */,
+				9EA98EEE1CA614E40062B2C7 /* InfoPlist.strings */,
 				9EA98E9E1CA5773E0062B2C7 /* Info.plist */,
-				9EA98E961CA5773E0062B2C7 /* DoggyAI.xcdatamodeld */,
 			);
 			path = DoggyAI;
 			sourceTree = "<group>";
@@ -77,6 +263,7 @@
 				9EA98E881CA5773E0062B2C7 /* Sources */,
 				9EA98E891CA5773E0062B2C7 /* Frameworks */,
 				9EA98E8A1CA5773E0062B2C7 /* Resources */,
+				9EA98F081CA74D400062B2C7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +286,7 @@
 				TargetAttributes = {
 					9EA98E8B1CA5773E0062B2C7 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = Q2M9CTRHEY;
 					};
 				};
 			};
@@ -113,6 +301,16 @@
 			mainGroup = 9EA98E831CA5773E0062B2C7;
 			productRefGroup = 9EA98E8D1CA5773E0062B2C7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9437E85B1CAEE18A00F20CA6 /* Products */;
+					ProjectRef = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
+				},
+				{
+					ProductGroup = 943E62D81CAEE4BA00177CD4 /* Products */;
+					ProjectRef = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9EA98E8B1CA5773E0062B2C7 /* DoggyAI */,
@@ -120,14 +318,106 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		9437E8651CAEE18A00F20CA6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9437E8641CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9437E8671CAEE18A00F20CA6 /* OAuthSwiftDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftDemo.app;
+			remoteRef = 9437E8661CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9437E8691CAEE18A00F20CA6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9437E8681CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9437E86B1CAEE18A00F20CA6 /* OAuthSwiftOSXDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftOSXDemo.app;
+			remoteRef = 9437E86A1CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9437E86D1CAEE18A00F20CA6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9437E86C1CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9437E86F1CAEE18A00F20CA6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9437E86E1CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9437E8711CAEE18A00F20CA6 /* OAuthSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuthSwiftTests.xctest;
+			remoteRef = 9437E8701CAEE18A00F20CA6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		943E62E01CAEE4BA00177CD4 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 943E62DF1CAEE4BA00177CD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		943E62E21CAEE4BA00177CD4 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 943E62E11CAEE4BA00177CD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		943E62E41CAEE4BA00177CD4 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 943E62E31CAEE4BA00177CD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		943E62E61CAEE4BA00177CD4 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 943E62E51CAEE4BA00177CD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		943E62E81CAEE4BA00177CD4 /* PrephirencesiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PrephirencesiOSTests.xctest;
+			remoteRef = 943E62E71CAEE4BA00177CD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		9EA98E8A1CA5773E0062B2C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EA98E9D1CA5773E0062B2C7 /* LaunchScreen.storyboard in Resources */,
+				9EA98EED1CA614400062B2C7 /* Services.plist in Resources */,
+				9EA98F0A1CA74D760062B2C7 /* Main.storyboard in Resources */,
 				9EA98E9A1CA5773E0062B2C7 /* Assets.xcassets in Resources */,
-				9EA98E951CA5773E0062B2C7 /* Main.storyboard in Resources */,
+				94F6AC871CB33E23006FFB8F /* EPCalendarHeaderView.xib in Resources */,
+				94F6AC841CB33E23006FFB8F /* EPCalendarCell1.xib in Resources */,
+				94F6AC771CB2D5C6006FFB8F /* EPCalendarPicker in Resources */,
+				9EA98F201CA8C4210062B2C7 /* dogbone.png in Resources */,
+				9EA98EEF1CA614E40062B2C7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +428,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94F6AC861CB33E23006FFB8F /* EPCalendarHeaderView.swift in Sources */,
+				94F6AC6F1CB0B338006FFB8F /* DogStructure.swift in Sources */,
+				9EA98ECF1CA5A3300062B2C7 /* Services.swift in Sources */,
+				94F6AC851CB33E23006FFB8F /* EPCalendarConstants.swift in Sources */,
 				9EA98E921CA5773E0062B2C7 /* ViewController.swift in Sources */,
-				9EA98E981CA5773E0062B2C7 /* DoggyAI.xcdatamodeld in Sources */,
+				94F6AC891CB33E23006FFB8F /* EPExtensions.swift in Sources */,
+				94F6AC831CB33E23006FFB8F /* EPCalendarCell1.swift in Sources */,
+				94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */,
+				9EA98F1C1CA86CD10062B2C7 /* DogTableViewCell.swift in Sources */,
+				94F6AC881CB33E23006FFB8F /* EPCalendarPicker.swift in Sources */,
+				9EA98ED11CA5A3590062B2C7 /* WebViewController.swift in Sources */,
 				9EA98E901CA5773E0062B2C7 /* AppDelegate.swift in Sources */,
+				9EA98EA51CA5A2DB0062B2C7 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9EA98E931CA5773E0062B2C7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9EA98E941CA5773E0062B2C7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9EA98E9B1CA5773E0062B2C7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9EA98E9C1CA5773E0062B2C7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9EA98E9F1CA5773E0062B2C7 /* Debug */ = {
@@ -255,10 +536,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = DoggyAI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = oinks.rocks.DoggyAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -266,10 +551,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = DoggyAI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = oinks.rocks.DoggyAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -292,21 +581,9 @@
 				9EA98EA31CA5773E0062B2C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9EA98E961CA5773E0062B2C7 /* DoggyAI.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9EA98E971CA5773E0062B2C7 /* DoggyAI.xcdatamodel */,
-			);
-			currentVersion = 9EA98E971CA5773E0062B2C7 /* DoggyAI.xcdatamodel */;
-			path = DoggyAI.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9EA98E841CA5773E0062B2C7 /* Project object */;
 }

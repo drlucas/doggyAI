@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Fitbit</key>
+	<dict>
+		<key>consumerKey</key>
+		<string>227PC4</string>
+		<key>consumerSecret</key>
+		<string>9d7999f0834ecd53d38d11a095af950e</string>
+	</dict>
+	<key>Fitbark</key>
+	<dict>
+		<key>consumerKey</key>
+		<string>fdcb4ac3295906a977f6317979ffaab6d11d93e833c1f41ed834c2b0908cdf2c</string>
+		<key>consumerSecret</key>
+		<string>4ca58af6e0b5c9188d17fc92366c86b8f1f4c8bd9e77ef847edc6479487ef120</string>
+	</dict>
+</dict>
+</plist>
