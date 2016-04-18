@@ -42,10 +42,11 @@
  Requests with a Json body must set the “content-type” header to “application/json”
  
  */
-
+//import CloudKit
 import OAuthSwift
 import UIKit
 import Prephirences
+
 
 
 
@@ -75,7 +76,12 @@ class ViewController: UIViewController {
     @IBOutlet var dogname: UILabel!
     @IBOutlet var dogpic: UIImageView!
     @IBOutlet var dogtableview: UITableView!
-
+    
+    @IBAction func GetCloud(sender: AnyObject) {
+        print ("CloudY")
+    }
+    
+    
     @IBAction func FetchDogs(sender: AnyObject) {
        
      
@@ -184,11 +190,12 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
     func Authenticate() {
         print ("Start authenticating")
         //authenticate and pull in the user information
         
-    
         if let mytoken = self.defaults.objectForKey("oauth_token")  {
            //check to see if I have a token, if I do, check to make sure it's still active (they only last a year)
             // Calculate the expiration date so we know if the token is invalid
@@ -208,6 +215,7 @@ class ViewController: UIViewController {
                                     let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
                                     //  print ("Dictionary time: \(jsonDict)")
                                     let curr_user = jsonDict["user"] as? NSDictionary?
+                                    //let curr_user = jsonDict["user"] as! String!
                                     // print("current user: \(curr_user)")
                                     let fname = curr_user!!["first_name"] as? String
                                     self.dogname.text = fname
@@ -328,7 +336,9 @@ class ViewController: UIViewController {
                                 let encodedImageData = image!!["data"] as? String
                                 let decodedData = NSData(base64EncodedString: encodedImageData!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                                 let decodedImage = UIImage(data: decodedData!)
+                            ///    self.dogpic.clipsToBounds = true
                                 self.dogpic.image = decodedImage
+            
             }, failure: { error in
                 print(error.localizedDescription)
         })
@@ -348,6 +358,7 @@ class ViewController: UIViewController {
             let image = jsonDict["image"] as? NSDictionary?
             let encodedImageData = image!!["data"] as? String
             self.mydogtopass.image = encodedImageData!
+            
             //print("worked?")
             //print(self.mydogtopass.image)
             //use the next two lines to show the picture from the image data
@@ -371,6 +382,12 @@ class ViewController: UIViewController {
         getDogActivity(self.fromdate, date2: self.todate)
         
     }
+    
+    @IBAction func cancelfromCloudContoller(segue:UIStoryboardSegue) {
+        print ("go back from cloud")
+        
+    }
+    
     
     @IBAction func saveDogDetails(segue:UIStoryboardSegue) {
         let view2:DoggyDetailsViewController = segue.sourceViewController as! DoggyDetailsViewController
@@ -525,13 +542,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "dogsegue" {
-            print ("Prepare to segue")
+            print ("Prepare to segue to doggy world")
             let destination = segue.destinationViewController as! DoggyDetailsViewController
        //     let selectedRow = tableView.indexPathForSelectedRow()!.row
            // destination.passedName = self.dognameToPass
             destination.thepasseddog = self.mydogtopass
         }
  
+        if segue.identifier == "cloudloader" {
+            let destination = segue.destinationViewController as! CloudViewController
+            destination.thepasseddog = self.mydogtopass
+            print ("Prepare to segue to cloudy world")
+        }
  
     }
     
