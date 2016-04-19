@@ -15,6 +15,7 @@ class CloudViewController: UIViewController {
     
     var thepasseddog:Dog!
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+    var userrecord:CKRecordID!
     
     /*
      struct Dog {
@@ -30,78 +31,85 @@ class CloudViewController: UIViewController {
     @IBAction func ReturnHome(sender: UIButton) {
         //exit back maybe need this function in home view controller 
         
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getusername()
         doSubmission()
-        saveDog()
+  
         
-    }
+           }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+func getusername() {
+        //go get our username from icloud so we can pull up our records
+        print ("I'm in get username now")
+        let container = CKContainer.defaultContainer()
+        container.requestApplicationPermission(.UserDiscoverability) { (status, error) in
+            guard error == nil else {
+                print ("Error: \(error)")
+                return }
+            
+            if status == CKApplicationPermissionStatus.Granted {
+               print ("I have permission")
+            }
+           
+                container.fetchUserRecordIDWithCompletionHandler { (recordID, error) in
+                guard error == nil else { return }
+                guard let recordID = recordID else { return }
+                print ("Record name: \(recordID.recordName) ")
+                self.userrecord = recordID
+                container.discoverUserInfoWithUserRecordID(recordID,
+                    completionHandler: {
+                        (userInfo: CKDiscoveredUserInfo?, error: NSError?) in
+                        
+                        if error != nil{
+                            print("Error in fetching user. Error = \(error)")
+                        } else {
+                           let firstName = userInfo!.displayContact?.givenName ?? ""
+                           let  lastName = userInfo!.displayContact?.familyName ?? ""
+                            print("First name = \(firstName)")
+                            print("Last name = \(lastName)")
+                            self.printrecords()
+                        }
+                }) } }
+    } //end of getusername
 
     
-    func saveDog() {
-        
-        
-        let dogRecord = CKRecord(recordType: "Dogs")
-        dogRecord["slug"] = thepasseddog.slug
-        dogRecord["name"] = thepasseddog.name
-       // dogRecord[""] = thepasseddog.image
-        dogRecord["gender"] = thepasseddog.gender
-        publicDB.saveRecord(dogRecord) { (record, error) in }
-
     
+    func printrecords() {
+        let reference = CKReference(recordID: self.userrecord, action: .None)
+        let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
+        let query = CKQuery(recordType: "Dogs", predicate: predicate)
+        publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
+           print("Record: \(records)")
+            print("Record: \(records?.count)")
+        }
     }
     
     func doSubmission() {
-        let whistleRecord = CKRecord(recordType: "Dogs")
         
-        let saveRecordsOperation = CKModifyRecordsOperation()
-        saveRecordsOperation.recordsToSave = [whistleRecord]
-      //  saveRecordsOperation.tag
-        saveRecordsOperation.savePolicy = .IfServerRecordUnchanged
-        
-        whistleRecord["slug"] = "aaaaahahahahahahahhah"
-        whistleRecord["name"] = "Doggy bark"
-        
-     //   let audioURL = RecordWhistleViewController.getWhistleURL()
-     //   let whistleAsset = CKAsset(fileURL: audioURL)
-     //   whistleRecord["audio"] = whistleAsset
-        
-        CKContainer.defaultContainer().publicCloudDatabase.saveRecord(whistleRecord) { [unowned self] (record, error) -> Void in
+        let dogRecord = CKRecord(recordType: "Dogs")
+        dogRecord["title"] = thepasseddog.name
+        dogRecord["title"] = thepasseddog.birth
+        dogRecord["slug"] = thepasseddog.slug
+        dogRecord["name"] = thepasseddog.name
+        dogRecord["weight"] = thepasseddog.weight
+        // dogRecord[""] = thepasseddog.image
+        dogRecord["gender"] = thepasseddog.gender
+            publicDB.saveRecord(dogRecord) { [unowned self] (record, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if error == nil {
                     self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
-   //                 self.status.text = "Done!"
-  //                  self.spinner.stopAnimating()
+  
                     print(" Record saved")
-                    
-  //                  ViewController.dirty = true
                 } else {
-  //                  self.status.text = "Error: \(error!.localizedDescription)"
-  //                  self.spinner.stopAnimating()
                 }
-                
-      //          self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneTapped")
             }
         }
     }
