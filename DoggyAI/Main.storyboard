@@ -1,12 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9tl-bp-4hW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bv5-oT-dlG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Register-->
+        <scene sceneID="HoP-Xv-dIF">
+            <objects>
+                <viewController title="Register" id="Bv5-oT-dlG" customClass="RegisterViewController" customModule="DoggyAI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qdy-iP-Jql"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z0P-8W-h0K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gi3-e7-bq9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Doggy AI Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlJ-Jb-58D">
+                                <rect key="frame" x="249" y="20" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGK-xX-b2e">
+                                <rect key="frame" x="25" y="82" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMT-wq-aWt">
+                                <rect key="frame" x="85" y="322" width="94" height="30"/>
+                                <state key="normal" title="Save Settings"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3fW-TU-hW2">
+                                <rect key="frame" x="244" y="322" width="113" height="30"/>
+                                <state key="normal" title="Load Main Menu"/>
+                                <connections>
+                                    <segue destination="9tl-bp-4hW" kind="presentation" id="dNt-QJ-f5w"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jh-zQ-8cr">
+                                <rect key="frame" x="160" y="82" width="190" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jED-ZE-5wG">
+                                <rect key="frame" x="25" y="111" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhI-Zo-pdR">
+                                <rect key="frame" x="25" y="141" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk4-hr-rzp">
+                                <rect key="frame" x="160" y="111" width="190" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Se-jq-P6I">
+                                <rect key="frame" x="374" y="82" width="100" height="100"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQY-mz-nSE">
+                                <rect key="frame" x="160" y="169" width="197" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Slug:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-nx-0LP">
+                                <rect key="frame" x="20" y="163" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktj-9e-D30">
+                                <rect key="frame" x="160" y="121" width="190" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="firstnameLabel" destination="2jh-zQ-8cr" id="1t0-zF-TaT"/>
+                        <outlet property="lastnameLabel" destination="xk4-hr-rzp" id="Gvz-55-SjZ"/>
+                        <outlet property="userImageView" destination="9Se-jq-P6I" id="Mdb-UK-9Tq"/>
+                        <outlet property="usernameLabel" destination="Ktj-9e-D30" id="VdN-Sr-Mi7"/>
+                        <outlet property="userslugLabel" destination="LQY-mz-nSE" id="8IQ-vK-KY7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIY-Tp-acT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-51" y="-222"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="gbZ-xW-Hi0">
             <objects>
@@ -19,19 +112,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" misplaced="YES" image="iron-chain.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-fW-wLB">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="iron-chain.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="b9S-fW-wLB">
                                 <rect key="frame" x="95" y="0.0" width="380" height="400"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Dog Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cs3-ny-CtO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cs3-ny-CtO">
                                 <rect key="frame" x="226" y="19" width="180" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gjS-im-i4R">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gjS-im-i4R">
                                 <rect key="frame" x="193" y="109" width="185" height="182"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zi4-RI-BXb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zi4-RI-BXb">
                                 <rect key="frame" x="82" y="389" width="468" height="267"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -60,7 +153,7 @@
                                     <outlet property="delegate" destination="9tl-bp-4hW" id="56z-HC-Qtg"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOZ-Vd-RmH">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOZ-Vd-RmH">
                                 <rect key="frame" x="205" y="357" width="160" height="30"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -75,7 +168,7 @@
                                     <action selector="FetchDogs:" destination="9tl-bp-4hW" eventType="touchUpInside" id="Jyz-Vt-dVO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaB-rz-eyr">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eaB-rz-eyr">
                                 <rect key="frame" x="20" y="341" width="148" height="30"/>
                                 <state key="normal" title="List Dogs From Cloud"/>
                                 <connections>
@@ -85,22 +178,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MOZ-Vd-RmH" firstAttribute="top" secondItem="b9S-fW-wLB" secondAttribute="bottom" constant="-43" id="0IR-TM-y2t"/>
-                            <constraint firstItem="zi4-RI-BXb" firstAttribute="centerX" secondItem="uVX-2p-T79" secondAttribute="centerX" id="2WS-6U-rrz"/>
-                            <constraint firstItem="gjS-im-i4R" firstAttribute="width" secondItem="uVX-2p-T79" secondAttribute="height" multiplier="37:120" id="4NU-yT-OGi"/>
-                            <constraint firstItem="b9S-fW-wLB" firstAttribute="centerY" secondItem="gjS-im-i4R" secondAttribute="centerY" id="53Q-iJ-vO4"/>
-                            <constraint firstItem="gjS-im-i4R" firstAttribute="centerX" secondItem="uVX-2p-T79" secondAttribute="centerX" id="6st-hO-w1g"/>
-                            <constraint firstItem="eaB-rz-eyr" firstAttribute="top" secondItem="gjS-im-i4R" secondAttribute="bottom" constant="50" id="7SR-It-Nnb"/>
-                            <constraint firstItem="cs3-ny-CtO" firstAttribute="centerX" secondItem="uVX-2p-T79" secondAttribute="centerX" id="ENK-LT-1y7"/>
-                            <constraint firstItem="MOZ-Vd-RmH" firstAttribute="centerX" secondItem="uVX-2p-T79" secondAttribute="centerX" id="FJU-g3-NB4"/>
-                            <constraint firstItem="gjS-im-i4R" firstAttribute="width" secondItem="uVX-2p-T79" secondAttribute="width" id="Mm5-kb-p3F"/>
-                            <constraint firstItem="zi4-RI-BXb" firstAttribute="top" secondItem="MOZ-Vd-RmH" secondAttribute="bottom" constant="2" id="Sgu-eI-DTe"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="eaB-rz-eyr" secondAttribute="leading" id="sdF-aw-3fc"/>
-                            <constraint firstItem="cs3-ny-CtO" firstAttribute="top" secondItem="Fjv-3M-4GU" secondAttribute="bottom" constant="-1" id="twQ-Hq-BB0"/>
-                            <constraint firstItem="b9S-fW-wLB" firstAttribute="centerX" secondItem="gjS-im-i4R" secondAttribute="centerX" id="w4J-Z4-RZI"/>
-                            <constraint firstItem="gjS-im-i4R" firstAttribute="top" secondItem="cs3-ny-CtO" secondAttribute="bottom" constant="69" id="wY8-1h-gKQ"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="dogname" destination="cs3-ny-CtO" id="SiY-6M-gQf"/>
@@ -111,7 +188,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pB-D5-beS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="204"/>
+            <point key="canvasLocation" x="414" y="98"/>
         </scene>
         <!--Cloud View Controller-->
         <scene sceneID="xHS-0S-cZM">
@@ -139,9 +216,21 @@
                                     <segue destination="ZfD-Rt-vem" kind="unwind" unwindAction="cancelfromCloudContoller:" id="MMd-jo-KTO"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ld-AL-ELa">
+                                <rect key="frame" x="154" y="160" width="300" height="270"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Picture of my dog!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gp-NR-QY3">
+                                <rect key="frame" x="234" y="447" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="dogImageView" destination="9Ld-AL-ELa" id="6uz-za-eij"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rwx-1u-CPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZfD-Rt-vem" userLabel="Exit" sceneMemberID="exit"/>
@@ -160,17 +249,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0t-Yc-LBW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0t-Yc-LBW">
                                 <rect key="frame" x="220" y="48" width="160" height="160"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-rE-oAK">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-rE-oAK">
                                 <rect key="frame" x="113" y="257" width="58" height="30"/>
                                 <state key="normal" title="Go Back"/>
                                 <connections>
                                     <segue destination="Iwr-fi-2La" kind="unwind" unwindAction="canceltoViewContoller:" id="mTb-93-5Me"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Dog Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y95-rK-Iyz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y95-rK-Iyz">
                                 <rect key="frame" x="0.0" y="19" width="600" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -216,11 +305,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="S0t-Yc-LBW" firstAttribute="centerX" secondItem="s6B-qC-gLM" secondAttribute="centerX" id="1nP-Ac-07e"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="DkG-rE-oAK" secondAttribute="trailing" constant="305" id="h1C-Ix-L8w"/>
-                            <constraint firstItem="y95-rK-Iyz" firstAttribute="centerX" secondItem="s6B-qC-gLM" secondAttribute="centerX" id="nkh-De-rn7"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="dognamelabel" destination="y95-rK-Iyz" id="oWc-z3-CnB"/>

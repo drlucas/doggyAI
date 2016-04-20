@@ -16,6 +16,9 @@ class CloudViewController: UIViewController {
     var thepasseddog:Dog!
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var userrecord:CKRecordID!
+    let dogRecord = CKRecord(recordType: "Dogs")
+    @IBOutlet var dogImageView: UIImageView!
+    
     
     /*
      struct Dog {
@@ -36,7 +39,7 @@ class CloudViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getusername()
-        doSubmission()
+     //   doSubmission()   /////save a record
   
         
            }
@@ -44,6 +47,15 @@ class CloudViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func getdogimage () {
+        
+        let downloadedimage = dogRecord["image"] as! CKAsset
+        dogImageView.image = UIImage(
+            contentsOfFile: downloadedimage.fileURL.absoluteString
+        )
     }
     
 func getusername() {
@@ -87,21 +99,42 @@ func getusername() {
         let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
         let query = CKQuery(recordType: "Dogs", predicate: predicate)
         publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
-           print("Record: \(records)")
-            print("Record: \(records?.count)")
+            for user in records! {
+               
+                print("User: \(user)")
+                print("User firstname: \(user["name"])")
+                print("Record: \(records?.count)")
+                let downloadedimage = user["image"] as! CKAsset
+                self.dogImageView.image = UIImage(
+                    contentsOfFile: downloadedimage.fileURL.path!
+                )
+                
+               
+                
+            }
+            
         }
     }
     
     func doSubmission() {
         
-        let dogRecord = CKRecord(recordType: "Dogs")
+        
         dogRecord["title"] = thepasseddog.name
         dogRecord["title"] = thepasseddog.birth
         dogRecord["slug"] = thepasseddog.slug
         dogRecord["name"] = thepasseddog.name
         dogRecord["weight"] = thepasseddog.weight
-        // dogRecord[""] = thepasseddog.image
+      //  dogRecord["image"] = thepasseddog.image
         dogRecord["gender"] = thepasseddog.gender
+        
+     //   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    //        guard let mediaURL = info[UIImagePickerControllerMediaURL] as? NSURL else { return }
+    //        dogRecord["image"] = CKAsset(fileURL: mediaURL)
+    //        print("Image picker")
+   //     }
+       
+        
+        
             publicDB.saveRecord(dogRecord) { [unowned self] (record, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if error == nil {

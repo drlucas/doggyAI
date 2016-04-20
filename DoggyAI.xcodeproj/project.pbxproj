@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		943E62C31CAEE34F00177CD4 /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9437E8691CAEE18A00F20CA6 /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		943E62EA1CAEEE9900177CD4 /* Prephirences.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 943E62E21CAEE4BA00177CD4 /* Prephirences.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		944C6FA01CC71A38006194B4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6F9F1CC71A38006194B4 /* RegisterViewController.swift */; };
 		946961101CBD2283009589FC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9469610F1CBD2283009589FC /* CloudKit.framework */; };
 		946961121CBD22C0009589FC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946961111CBD22C0009589FC /* MapKit.framework */; };
 		946961141CBDDF8D009589FC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 946961131CBDDF8D009589FC /* Launch Screen.storyboard */; };
@@ -142,6 +143,7 @@
 /* Begin PBXFileReference section */
 		9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 		943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Prephirences.xcodeproj; path = "../Prephirences-master/Prephirences.xcodeproj"; sourceTree = "<group>"; };
+		944C6F9F1CC71A38006194B4 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		9469610E1CBD2272009589FC /* DoggyAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DoggyAI.entitlements; sourceTree = "<group>"; };
 		9469610F1CBD2283009589FC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		946961111CBD22C0009589FC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -264,6 +266,7 @@
 				9EA98E911CA5773E0062B2C7 /* ViewController.swift */,
 				94F6AC6E1CB0B338006FFB8F /* DogStructure.swift */,
 				946961181CBF22D8009589FC /* CloudViewController.swift */,
+				944C6F9F1CC71A38006194B4 /* RegisterViewController.swift */,
 				9EA98F1B1CA86CD10062B2C7 /* DogTableViewCell.swift */,
 				94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */,
 				9EA98ED01CA5A3590062B2C7 /* WebViewController.swift */,
@@ -471,6 +474,7 @@
 				94F6AC851CB33E23006FFB8F /* EPCalendarConstants.swift in Sources */,
 				9EA98E921CA5773E0062B2C7 /* ViewController.swift in Sources */,
 				94F6AC891CB33E23006FFB8F /* EPExtensions.swift in Sources */,
+				944C6FA01CC71A38006194B4 /* RegisterViewController.swift in Sources */,
 				94F6AC831CB33E23006FFB8F /* EPCalendarCell1.swift in Sources */,
 				94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */,
 				946961191CBF22D8009589FC /* CloudViewController.swift in Sources */,
