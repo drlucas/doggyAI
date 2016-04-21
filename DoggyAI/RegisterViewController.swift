@@ -35,6 +35,8 @@ class RegisterViewController: UIViewController {
 
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var userrecord:CKRecordID!
+    let OwnerRecord = CKRecord(recordType: "Owners")
+    var credentials = ""
     let debug = true   // used to print debug info to the All output screen
     var authtoken = "" // my authentication token to use in fitbark
     var tokendate = "" //date when token was originally created
@@ -129,8 +131,8 @@ class RegisterViewController: UIViewController {
                 
                 for owner in records! {
                     if self.debug {
-                        print("Dog Owner: \(owner)")
-                        print("Dog Owner  firstname: \(owner["name"])")
+                       // print("Dog Owner: \(owner)")
+                        print("Dog Owner  firstname: \(owner["first_name"])")
                     }
                     
                     //  let downloadedimage = user["image"] as! CKAsset
@@ -149,9 +151,29 @@ class RegisterViewController: UIViewController {
         }
     }
     
+    func SaveOwnerRecord() {
+        
+        
+        OwnerRecord["first_name"] = self.firstnameLabel.text
+        OwnerRecord["last_name"] = self.lastnameLabel.text
+        OwnerRecord["token"] = self.credentials
+        OwnerRecord["token_date"] = NSDate()
+        publicDB.saveRecord(OwnerRecord) { [unowned self] (record, error) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                if error == nil {
+                    self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
+                    
+                    print(" Record saved")
+                } else {
+                    print("Error saving record for owner \(error)")
+                }
+            }
+        }
+    }
+
 
     
-    func loginUser() {
+func loginUser() {
         //get
         self.oauthswift.accessTokenBasicAuthentification = true
         let state: String = generateStateWithLength(20) as String
@@ -162,7 +184,7 @@ class RegisterViewController: UIViewController {
             //     self.keychain["the_token_key"] = self.oauthswift.client.credential.oauth_token
             //      self.keychain["the_secret_token_key"] = self.oauthswift.client.credential.oauth_token_secret
             //       self.keychain["the_credential_key", .Archive] = self.oauthswift.client.credential
-            
+            self.credentials = credential.oauth_token
             print ("Credential: \(credential)")
             print ("Paramters: \(parameters)")
             print ("Response: \(response)")
@@ -172,6 +194,9 @@ class RegisterViewController: UIViewController {
             //self.defaults.setObject(credential.oauth_token, forKey: "oauth_token")
             print ("Token: \(credential.oauth_token)")
             //  self.getDogowner(self.oauthswift)
+            self.SaveOwnerRecord()
+            
+            
             }, failure: { error in
                 if error.localizedDescription == "Missing state" {
                     //i think we need to try to login again.
