@@ -21,8 +21,6 @@ import UIKit
 import CloudKit
 import OAuthSwift
 
-
-
 class RegisterViewController: UIViewController {
     
     let oauthswift = OAuth2Swift(
@@ -36,10 +34,10 @@ class RegisterViewController: UIViewController {
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var userrecord:CKRecordID!
     let OwnerRecord = CKRecord(recordType: "Owners")
-    var credentials = ""
+    var credentials:String!
     let debug = true   // used to print debug info to the All output screen
-    var authtoken = "" // my authentication token to use in fitbark
-    var tokendate = "" //date when token was originally created
+    var authtoken = "" as String! // my authentication token to use in fitbark
+    var tokendate:NSDate! //date when token was originally created
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var firstnameLabel: UILabel!
@@ -116,7 +114,7 @@ class RegisterViewController: UIViewController {
         let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
         let query = CKQuery(recordType: "Owners", predicate: predicate)
         if self.debug {
-            print ("Query: \(query)")
+            //print ("Query: \(query)")
         }
         publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
           if self.debug {
@@ -131,8 +129,9 @@ class RegisterViewController: UIViewController {
                 
                 for owner in records! {
                     if self.debug {
-                       // print("Dog Owner: \(owner)")
+                       
                         print("Dog Owner  firstname: \(owner["first_name"])")
+                        print("Dog Owner  token date: \(owner["token_date"])")
                     }
                     
                     //  let downloadedimage = user["image"] as! CKAsset
@@ -141,22 +140,47 @@ class RegisterViewController: UIViewController {
                     //  )
                   self.usernameLabel.text = String(owner["username"])  //this is stored in icloud as we stored it after we logged in originally
                   self.userslugLabel.text = String(owner["slug"]) //this is stored in icloud as we stored it after we logged in
-                  self.authtoken = String(owner["token"])
-                  self.tokendate = String(owner["token_date"]) //this needs to be NSDate so I can check >1 year old
-               
-                
+                  self.authtoken = String(owner["token"]!)
+                  let mydate = owner["token_date"] as! NSDate
+                 self.tokendate = mydate
+                     if self.debug {
+                        print ("Token creation/updated date: \(self.tokendate)")
+                    }
+                    let currentDateTime = NSDate()
+                    let timeSince:[Int] = self.timeBetween(self.tokendate, endDate: currentDateTime)
+                    if timeSince[0] < 365 {
+                        if self.debug {
+                            print("The difference between dates is: \(timeSince[0]). No need to get a new token")
+                        }
+                        else {
+                            print ("we need a new token")
+                        }
+                    
+                    }
                 }
             
             }
         }
     }
     
-    func SaveOwnerRecord() {
+    func timeBetween(startDate: NSDate, endDate: NSDate) -> [Int]
+    {
+        let calendar = NSCalendar.currentCalendar()
         
+        let components = calendar.components([.Day, .Month, .Year], fromDate: startDate, toDate: endDate, options: [])
+        
+        return [components.day, components.hour, components.minute]
+    }
+    
+    
+    func SaveOwnerRecord() {
+        /*SAVE*/
+        //     self.keychain["the_token_key"] = self.oauthswift.client.credential.oauth_token
         
         OwnerRecord["first_name"] = self.firstnameLabel.text
         OwnerRecord["last_name"] = self.lastnameLabel.text
-        OwnerRecord["token"] = self.credentials
+        OwnerRecord["token"] = self.oauthswift.client.credential.oauth_token
+        authtoken = self.oauthswift.client.credential.oauth_token
         OwnerRecord["token_date"] = NSDate()
         publicDB.saveRecord(OwnerRecord) { [unowned self] (record, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
@@ -172,30 +196,21 @@ class RegisterViewController: UIViewController {
     }
 
 
-    
 func loginUser() {
-        //get
+        //get our main token from FitBark authorization. 
+        //if we fail to get a token, try again, otherwise we save the token record into CloudKit
         self.oauthswift.accessTokenBasicAuthentification = true
         let state: String = generateStateWithLength(20) as String
         self.oauthswift.authorizeWithCallbackURL( NSURL(string: "oauth-swift://oauth-callback/fitbark")!, scope: "", state: state, success: {
             credential, response, parameters in
-            // we have now authenticated so save into user defaults or keychain for quicker use
-            /*SAVE*/
-            //     self.keychain["the_token_key"] = self.oauthswift.client.credential.oauth_token
-            //      self.keychain["the_secret_token_key"] = self.oauthswift.client.credential.oauth_token_secret
-            //       self.keychain["the_credential_key", .Archive] = self.oauthswift.client.credential
-            self.credentials = credential.oauth_token
-            print ("Credential: \(credential)")
+            if self.debug {
+            print ("Credential: \(credential.oauth_token)")
             print ("Paramters: \(parameters)")
             print ("Response: \(response)")
             print ("State: \(state)")
-            
-            //now save to NSDEfaults, but for this i'll now want to save to Owners Record
-            //self.defaults.setObject(credential.oauth_token, forKey: "oauth_token")
             print ("Token: \(credential.oauth_token)")
-            //  self.getDogowner(self.oauthswift)
+            }
             self.SaveOwnerRecord()
-            
             
             }, failure: { error in
                 if error.localizedDescription == "Missing state" {
@@ -205,5 +220,37 @@ func loginUser() {
                 }
         })
     }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "loadmain" {
+            if authtoken == "" {
+                // put up alert if we aren't logged in yet
+                SCLAlertView().showError("Error", subTitle:"You have yet authenticated", closeButtonTitle:"OK")
+                return false
+            }
+            else {
+        return true
+            }
+        }
+        return true
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "loadmain" {
+            print ("Prepare to segue to doggy world main menu")
+            let destination = segue.destinationViewController as! ViewController
+            destination.passedtoken = authtoken
+            
+        }
+        
+        if segue.identifier == "savesettings" {
+            let destination = segue.destinationViewController as! CloudViewController
+           // destination.passedtoken = self.mydogtopass
+            print ("Prepare to segue to save settings")
+        }
+        
+    }
+    
     
 }

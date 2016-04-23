@@ -109,7 +109,6 @@ func getusername() {
                     contentsOfFile: downloadedimage.fileURL.path!
                 )
                 
-               
                 
             }
             
@@ -146,5 +145,9 @@ func getusername() {
             }
         }
     }
+    
+    
+
+    
     
 }

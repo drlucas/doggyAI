@@ -59,6 +59,8 @@ class ViewController: UIViewController {
     var fromdate:NSDate!
     var todate:NSDate!
     var numberofdogrelations = 0
+    var passedtoken:String!
+    
     var ownderdogcount = 0
    // var dognameToPass:String!  //from table
     var mydogtopass:Dog!  //the dog in the table
@@ -195,25 +197,31 @@ class ViewController: UIViewController {
     func Authenticate() {
         print ("Start authenticating")
         //authenticate and pull in the user information
-        
-        if let mytoken = self.defaults.objectForKey("oauth_token")  {
-           //check to see if I have a token, if I do, check to make sure it's still active (they only last a year)
-            // Calculate the expiration date so we know if the token is invalid
-          //  NSDate *expDate = [NSDate dateWithTimeIntervalSinceNow:[[params objectForKey:@"expires_in"] integerValue]];
-          //  [[NSUserDefaults standardUserDefaults] setObject:expDate forKey:OADTokenExpirationDefaultsName];
+        //used this from cloud records instead of defaults -->    passedtoken
+    
+        //    if let mytoken = self.defaults.objectForKey("oauth_token")  {
             
-  /*RETRIEVE*/
+        if (1 == 1) {  // if let mytoken = self.defaults.objectForKey("oauth_token")  {
+           
+            let mytoken = "\(self.passedtoken!)"
+            
+              /*RETRIEVE*/
  //            if let token = self.keychain["the_token_key"] as? String { print ("got token \(token)")}
             // if let token_secret = keychain["the_secret_token_key"] as? String { print ("got token") }
             
-            
-            print ("Token: \(mytoken)")
-            oauthswift.client.credential.oauth_token = mytoken as! String
+            print ("Token from icloud: \(mytoken) .")
+           
+           // oauthswift.client.credential.oauth_token = mytoken as! String
+            //oauth.client.credential.oauth_token = {your stored token}
+            // oauth.client.credential.oauth_token_secret
+
+            oauthswift.client.credential.oauth_token = self.passedtoken             // oauthswift.client.credential.oauth_token = "61bf5af1ffdd0f4db5ed52153566dd2b34105efcf994233a5803527de70d93f0"
+           // self.oauthswift.client.credential.oauth_token_secret = self.passedtokensecret
             oauthswift.client.get("https://app.fitbark.com/api/v2/user",  parameters: [:],
                                   success: {
                                     data, response in
                                     let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
-                                    //  print ("Dictionary time: \(jsonDict)")
+                                    print ("Dictionary time: \(jsonDict)")
                                     let curr_user = jsonDict["user"] as? NSDictionary?
                                     //let curr_user = jsonDict["user"] as! String!
                                     // print("current user: \(curr_user)")
@@ -227,6 +235,8 @@ class ViewController: UIViewController {
                 }, failure: { error in
                     print("New error")
                     print(error.localizedDescription)
+                    // put up alert
+                    SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
             })
             
             //
@@ -412,6 +422,8 @@ extension ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //
+        print ("Passed token: \(passedtoken!)")
         self.Authenticate()
         self.fromdate = NSDate()
         self.todate = NSDate ()

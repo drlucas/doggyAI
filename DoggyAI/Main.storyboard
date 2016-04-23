@@ -37,7 +37,7 @@
                                 <rect key="frame" x="244" y="322" width="113" height="30"/>
                                 <state key="normal" title="Load Main Menu"/>
                                 <connections>
-                                    <segue destination="9tl-bp-4hW" kind="presentation" id="dNt-QJ-f5w"/>
+                                    <segue destination="9tl-bp-4hW" kind="presentation" identifier="loadmain" id="dNt-QJ-f5w"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jh-zQ-8cr">
