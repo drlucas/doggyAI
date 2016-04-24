@@ -52,12 +52,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhI-Zo-pdR">
-                                <rect key="frame" x="25" y="141" width="88" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xk4-hr-rzp">
                                 <rect key="frame" x="160" y="111" width="190" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -67,24 +61,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Se-jq-P6I">
                                 <rect key="frame" x="374" y="82" width="100" height="100"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQY-mz-nSE">
-                                <rect key="frame" x="160" y="169" width="197" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Slug:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUP-nx-0LP">
-                                <rect key="frame" x="20" y="163" width="75" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktj-9e-D30">
-                                <rect key="frame" x="160" y="121" width="190" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -92,8 +68,6 @@
                         <outlet property="firstnameLabel" destination="2jh-zQ-8cr" id="1t0-zF-TaT"/>
                         <outlet property="lastnameLabel" destination="xk4-hr-rzp" id="Gvz-55-SjZ"/>
                         <outlet property="userImageView" destination="9Se-jq-P6I" id="Mdb-UK-9Tq"/>
-                        <outlet property="usernameLabel" destination="Ktj-9e-D30" id="VdN-Sr-Mi7"/>
-                        <outlet property="userslugLabel" destination="LQY-mz-nSE" id="8IQ-vK-KY7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIY-Tp-acT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,6 +148,13 @@
                                 <connections>
                                     <action selector="GetCloud:" destination="9tl-bp-4hW" eventType="touchUpInside" id="pSE-gT-Qqt"/>
                                     <segue destination="NyR-s3-LSo" kind="presentation" identifier="cloudloader" id="3pq-Ky-m7N"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZ9-iH-STd">
+                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                <state key="normal" title="Button" image="setting.png"/>
+                                <connections>
+                                    <action selector="settingsbutton:" destination="9tl-bp-4hW" eventType="touchUpInside" id="FQ7-8I-teZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -321,5 +302,6 @@
     </scenes>
     <resources>
         <image name="iron-chain.jpg" width="380" height="400"/>
+        <image name="setting.png" width="128" height="128"/>
     </resources>
 </document>

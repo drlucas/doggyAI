@@ -59,13 +59,15 @@ class ViewController: UIViewController {
     var fromdate:NSDate!
     var todate:NSDate!
     var numberofdogrelations = 0
-    var passedtoken:String!
-    
+    var passedtoken: String!
     var ownderdogcount = 0
-   // var dognameToPass:String!  //from table
+    var user:User! // our user record
+    var useremail: String!
+    var userfullname: String!
+    
+    
     var mydogtopass:Dog!  //the dog in the table
-    let defaults = NSUserDefaults.standardUserDefaults()
- //   var keychain = KeychainPreferences.sharedInstance
+    
     let oauthswift = OAuth2Swift(
         consumerKey:    "fdcb4ac3295906a977f6317979ffaab6d11d93e833c1f41ed834c2b0908cdf2c",
         consumerSecret: "4ca58af6e0b5c9188d17fc92366c86b8f1f4c8bd9e77ef847edc6479487ef120",
@@ -73,8 +75,13 @@ class ViewController: UIViewController {
         accessTokenUrl: "https://app.fitbark.com/oauth/token",
         responseType:   "code"
     )
-    var havevalidtoken = false
     
+    
+    @IBAction func settingsbutton(sender: UIButton) {
+        print ("Go to settings screen")
+    }
+    
+   
     @IBOutlet var dogname: UILabel!
     @IBOutlet var dogpic: UIImageView!
     @IBOutlet var dogtableview: UITableView!
@@ -88,7 +95,8 @@ class ViewController: UIViewController {
        
      
       print ("Fetch")
- 
+        self.dogname.text = useremail
+
       self.ownderdogcount = 0
         //self.Authenticate()
         self.testFitbark(self.oauthswift)
@@ -192,86 +200,51 @@ class ViewController: UIViewController {
         
     }
     
-    
-    
-    func Authenticate() {
-        print ("Start authenticating")
+func Authenticate() {
+        print ("Start authenticating and get info")
         //authenticate and pull in the user information
-        //used this from cloud records instead of defaults -->    passedtoken
-    
-        //    if let mytoken = self.defaults.objectForKey("oauth_token")  {
-            
-        if (1 == 1) {  // if let mytoken = self.defaults.objectForKey("oauth_token")  {
-           
-            let mytoken = "\(self.passedtoken!)"
-            
-              /*RETRIEVE*/
- //            if let token = self.keychain["the_token_key"] as? String { print ("got token \(token)")}
-            // if let token_secret = keychain["the_secret_token_key"] as? String { print ("got token") }
-            
-            print ("Token from icloud: \(mytoken) .")
-           
-           // oauthswift.client.credential.oauth_token = mytoken as! String
-            //oauth.client.credential.oauth_token = {your stored token}
-            // oauth.client.credential.oauth_token_secret
-
-            oauthswift.client.credential.oauth_token = self.passedtoken             // oauthswift.client.credential.oauth_token = "61bf5af1ffdd0f4db5ed52153566dd2b34105efcf994233a5803527de70d93f0"
-           // self.oauthswift.client.credential.oauth_token_secret = self.passedtokensecret
-            oauthswift.client.get("https://app.fitbark.com/api/v2/user",  parameters: [:],
+        oauthswift.client.credential.oauth_token = self.passedtoken
+        oauthswift.client.get("https://app.fitbark.com/api/v2/user",  parameters: [:],
                                   success: {
                                     data, response in
-                                    let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+                                    let jsonDict: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
                                     print ("Dictionary time: \(jsonDict)")
-                                    let curr_user = jsonDict["user"] as? NSDictionary?
-                                    //let curr_user = jsonDict["user"] as! String!
-                                    // print("current user: \(curr_user)")
-                                    let fname = curr_user!!["first_name"] as? String
-                                    self.dogname.text = fname
-                                    if let slug = curr_user!!["slug"]  {
-                                        print("User's Slug: \(slug)")
-                                        self.picture = "https://app.fitbark.com/api/v2/picture/user/\(slug)"
-                                        print("User's Slug URL: \(self.picture)")                               }
                                     
-                }, failure: { error in
-                    print("New error")
-                    print(error.localizedDescription)
-                    // put up alert
-                    SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
-            })
-            
-            //
-            self.havevalidtoken = true
-            
-        }
-        else {
-        print ("No token")
-        self.oauthswift.accessTokenBasicAuthentification = true
-        let state: String = generateStateWithLength(20) as String
-        self.oauthswift.authorizeWithCallbackURL( NSURL(string: "oauth-swift://oauth-callback/fitbark")!, scope: "", state: state, success: {
-            credential, response, parameters in
-            // we have now authenticated so save into user defaults or keychain for quicker use
-            /*SAVE*/
-        //     self.keychain["the_token_key"] = self.oauthswift.client.credential.oauth_token
-       //      self.keychain["the_secret_token_key"] = self.oauthswift.client.credential.oauth_token_secret
-      //       self.keychain["the_credential_key", .Archive] = self.oauthswift.client.credential
+                                    let curr_user = jsonDict["user"] as? NSDictionary?
+                                    let fname = curr_user!!["first_name"] as? String
+                                    let lname = curr_user!!["last_name"] as? String
+                                    let pichash = curr_user!!["picture_hash"] as! String
+                                    let fullname = curr_user!!["name"] as? String
+                                    let email = curr_user!!["username"] as? String
+                                    let slug = curr_user!!["slug"] as? String
+                                    
+                                    self.picture = "https://app.fitbark.com/api/v2/picture/user/\(slug!)"
+                                    print("User's picture Slug URL: \(self.picture) \(email!)")
+                                    //self.dogname.text = "\(fullname)"
 
-            print ("Credential: \(credential)")
-            print ("Paramters: \(parameters)")
-            print ("Response: \(response)")
-            print ("State: \(state)")
-            self.defaults.setObject(credential.oauth_token, forKey: "oauth_token")
-            print ("Token: \(credential.oauth_token)")
-           //  self.getDogowner(self.oauthswift)
-            }, failure: { error in
-                print("Error : \(error.localizedDescription)")
-        })
-        }
+                                    self.useremail = email
+                                    self.userfullname = fullname
+                        //            self.user.lname = ""
+                        //            self.user.name = ""
+                        //            self.user.slug = ""
+                         //           self.user.pichah = ""
+                                    
+                                    
+                                }, failure: { error in
+                   
+                                    print("Error getting user information from fitbark.com")
+                                    print(error.localizedDescription)
+                                    // put up alert
+                                    SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
+                    })
+            
     }
+
     
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
+            }
     
     
     func getDogowner(oauthswift: OAuth2Swift) {
@@ -421,21 +394,14 @@ let FileManager: NSFileManager = NSFileManager.defaultManager()
 extension ViewController {
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         //
-        print ("Passed token: \(passedtoken!)")
+       // print ("Passed token: \(passedtoken!)")
         self.Authenticate()
+        
         self.fromdate = NSDate()
         self.todate = NSDate ()
-        
-        // Load config from files
-//        initConf()
-//        get_url_handler()
-//        self.navigationItem.title = "Doggy AI"
-//        let tableView: UITableView = UITableView(frame: self.view.bounds, style: .Plain)
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        self.view.addSubview(tableView)
         
     }
     

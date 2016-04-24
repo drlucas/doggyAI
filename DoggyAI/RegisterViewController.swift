@@ -30,6 +30,8 @@ class RegisterViewController: UIViewController {
         accessTokenUrl: "https://app.fitbark.com/oauth/token",
         responseType:   "code"
     )
+   
+    
 
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var userrecord:CKRecordID!
@@ -42,13 +44,20 @@ class RegisterViewController: UIViewController {
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var firstnameLabel: UILabel!
     @IBOutlet var lastnameLabel: UILabel!
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var userslugLabel: UILabel!
+    
+    var firstnametext = ""
+    var lastnametext = ""
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-          getusername()
+        
+        NSTimer.scheduledTimerWithTimeInterval(3.0, target: self,
+                                               selector: #selector(RegisterViewController.updateData), userInfo: nil, repeats: true)
+        
+       // updateData() // just so it happens quickly the first time
+        getusername()
         
     }
 
@@ -69,6 +78,12 @@ class RegisterViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func updateData () {
+        //all this does is update a lable 
+        self.firstnameLabel.text = self.firstnametext
+        self.lastnameLabel.text = self.lastnametext
+    }
     
     func getusername() {
         //go get our username from icloud so we can pull up our records
@@ -98,17 +113,21 @@ class RegisterViewController: UIViewController {
                         } else {
                             let firstName = userInfo!.displayContact?.givenName ?? ""
                             let  lastName = userInfo!.displayContact?.familyName ?? ""
-                            self.firstnameLabel.text = firstName
-                            self.lastnameLabel.text = lastName
+                            self.firstnametext = firstName
+                            self.lastnametext = lastName
                             if self.debug {
                             print("First name = \(firstName)")
                             print("Last name = \(lastName)")
+                           
                             }
+                           
                             self.checkUserExists()
                         }
+                        
+                        
                 }) } }
     } //end of getusername
-
+    
     func checkUserExists() {
         let reference = CKReference(recordID: self.userrecord, action: .None)
         let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
@@ -138,8 +157,7 @@ class RegisterViewController: UIViewController {
                     //  self.userImageView.image = UIImage(
                     //      contentsOfFile: downloadedimage.fileURL.path!
                     //  )
-                  self.usernameLabel.text = String(owner["username"])  //this is stored in icloud as we stored it after we logged in originally
-                  self.userslugLabel.text = String(owner["slug"]) //this is stored in icloud as we stored it after we logged in
+               
                   self.authtoken = String(owner["token"]!)
                   let mydate = owner["token_date"] as! NSDate
                  self.tokendate = mydate
@@ -246,8 +264,7 @@ func loginUser() {
         
         if segue.identifier == "savesettings" {
             let destination = segue.destinationViewController as! CloudViewController
-           // destination.passedtoken = self.mydogtopass
-            print ("Prepare to segue to save settings")
+                      print ("Prepare to segue to save settings")
         }
         
     }
