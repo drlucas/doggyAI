@@ -217,19 +217,12 @@ func Authenticate() {
                                     let fullname = curr_user!!["name"] as? String
                                     let email = curr_user!!["username"] as? String
                                     let slug = curr_user!!["slug"] as? String
+                                    let picURL = "https://app.fitbark.com/api/v2/picture/user/\(slug!)"
                                     
-                                    self.picture = "https://app.fitbark.com/api/v2/picture/user/\(slug!)"
-                                    print("User's picture Slug URL: \(self.picture) \(email!)")
-                                    //self.dogname.text = "\(fullname)"
-
+                                    self.getOwnerPic(self.oauthswift, pictureURL:picURL)
+                                    
                                     self.useremail = email
                                     self.userfullname = fullname
-                        //            self.user.lname = ""
-                        //            self.user.name = ""
-                        //            self.user.slug = ""
-                         //           self.user.pichah = ""
-                                    
-                                    
                                 }, failure: { error in
                    
                                     print("Error getting user information from fitbark.com")
@@ -237,8 +230,30 @@ func Authenticate() {
                                     // put up alert
                                     SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
                     })
-            
     }
+
+
+    func getOwnerPic(oauthswift: OAuth2Swift, pictureURL: String)
+    {
+               // this captures the user's profile picture
+        oauthswift.client.get(pictureURL, parameters: [:], success: {
+            data, response in
+            let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+            let image = jsonDict["image"] as? NSDictionary?
+            let encodedImageData = image!!["data"] as? String
+            let decodedData = NSData(base64EncodedString: encodedImageData!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+            let decodedImage = UIImage(data: decodedData!)
+            ///    self.dogpic.clipsToBounds = true
+            self.dogpic.image = decodedImage
+            print ("Done gettin gpic")
+            }, failure: { error in
+                print(error.localizedDescription)
+        })
+        
+    }
+    
+    
+
 
     
     
