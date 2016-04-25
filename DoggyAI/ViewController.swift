@@ -9,6 +9,7 @@
 //  https://github.com/drlucas/doggyAI
 //
 /*
+ //added and user https://github.com/danielgindi/Charts   (import Charts)
  
  Application Id: fdcb4ac3295906a977f6317979ffaab6d11d93e833c1f41ed834c2b0908cdf2c
  Secret: 4ca58af6e0b5c9188d17fc92366c86b8f1f4c8bd9e77ef847edc6479487ef120
@@ -76,6 +77,9 @@ class ViewController: UIViewController {
         responseType:   "code"
     )
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     @IBAction func settingsbutton(sender: UIButton) {
         print ("Go to settings screen")
@@ -90,15 +94,12 @@ class ViewController: UIViewController {
         print ("CloudY")
     }
     
-    
     @IBAction func FetchDogs(sender: AnyObject) {
-       
      
-      print ("Fetch")
+      print ("Fetch Dogs")
         self.dogname.text = useremail
-
-      self.ownderdogcount = 0
-        //self.Authenticate()
+        
+        self.ownderdogcount = 0
         self.testFitbark(self.oauthswift)
         // this retreives all the user's related dogs
         oauthswift.client.get("https://app.fitbark.com/api/v2/dog_relations", parameters: [:], success: {
@@ -115,7 +116,7 @@ class ViewController: UIViewController {
                     let dogbirth = item["dog"]["birth"].stringValue
                   //  print("Dog name: \(dogname)")
                   //  print("Dog slug: \(dogslug)")
-                    let mydog = Dog(birth:dogbirth, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"")
+                    let mydog = Dog(birth:dogbirth, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"", owner:"")
                    // self.dogs[self.ownderdogcount].name = dogname
                     // self.dogs[self.ownderdogcount].slug = dogslug
                     self.dogs.append(mydog)
@@ -135,24 +136,139 @@ class ViewController: UIViewController {
             }, failure: { error in
                 print(error.localizedDescription)
         })
-        
-        /*  https://app.fitbark.com/api/v2/dog_relations
-         "dog_relations": [
-         {
-         "id": 13,
-         "status": "OWNER",
-         "date": "2014-08-19T20:23:52.000Z",
-         "dog": {
-         "slug": "ad7c7166-4cf5-4284-aa56-2cf4df305b31",
-         "name": "Barley",
-         
-         */
-        
-    
     
     }
     
-  func getDogActivity(date1: NSDate, date2: NSDate) {
+ func Authenticate() {
+        print ("Start authenticating and get info")
+        //authenticate and pull in the user information from fitbark
+        oauthswift.client.credential.oauth_token = self.passedtoken
+        oauthswift.client.get("https://app.fitbark.com/api/v2/user",  parameters: [:],
+                                  success: {
+                                    data, response in
+                                    let jsonDict: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
+                                      //  print ("Dictionary time: \(jsonDict)")
+                                    let curr_user = jsonDict["user"] as? NSDictionary?
+                                    let fname = curr_user!!["first_name"] as? String
+                                    let lname = curr_user!!["last_name"] as? String
+                                    let pichash = curr_user!!["picture_hash"] as! String
+                                    let fullname = curr_user!!["name"] as? String
+                                    let email = curr_user!!["username"] as? String
+                                    let slug = curr_user!!["slug"] as? String
+                                    
+                                    self.getOwnerPic(self.oauthswift, userslug:slug!)
+                                    self.GetOwnerDogs(slug!)
+                                    self.useremail = email
+                                    self.userfullname = fullname
+                                }, failure: { error in
+                   
+                                    print("Error getting user information from fitbark.com")
+                                    print(error.localizedDescription)
+                                    // put up alert
+                                    SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
+                    })
+    }
+
+
+    func getOwnerPic(oauthswift: OAuth2Swift, userslug: String)
+    {
+        // this captures the user's profile picture
+        let pictureURL = "https://app.fitbark.com/api/v2/picture/user/\(userslug)"
+        oauthswift.client.get(pictureURL, parameters: [:], success: {
+            data, response in
+            let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+            let image = jsonDict["image"] as? NSDictionary?
+            let encodedImageData = image!!["data"] as? String
+            let decodedData = NSData(base64EncodedString: encodedImageData!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+            let decodedImage = UIImage(data: decodedData!)
+            ///    self.dogpic.clipsToBounds = true
+            self.dogpic.image = decodedImage
+            }, failure: { error in
+                print(error.localizedDescription)
+        })
+        
+    }
+    
+func GetOwnerDogs(userslug: String) {
+        self.dogname.text = useremail
+        self.ownderdogcount = 0
+        // this retreives all the user's related dogs
+        oauthswift.client.get("https://app.fitbark.com/api/v2/dog_relations", parameters: [:], success: {
+            data, response in
+            let json = JSON(data: data)
+            for item in json["dog_relations"].arrayValue {
+                if ( item["status"].stringValue == "OWNER" ) {
+                    let dogname = item["dog"]["name"].stringValue
+                    let dogslug = item["dog"]["slug"].stringValue
+                    let dogweight = item["dog"]["weight"].int
+                    let doggender = item["dog"]["gender"].stringValue
+                    let dogbirth = item["dog"]["birth"].stringValue
+                    let breed1id = item["dog"]["breed1"]["id"].int
+                    let breed1name = item["dog"]["breed1"]["name"].stringValue
+                    print ("Breed: \(breed1name)")
+                    let mydog = Dog(birth:dogbirth, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"", owner:userslug)
+                    self.dogs.append(mydog)
+                    self.ownderdogcount = self.ownderdogcount + 1
+                }
+            }
+            
+            self.dogtableview.reloadData()
+            //now go save the records to the cloud
+            CloudViewController().saveRecord(self.dogs)
+             // SCLAlertView().showError("Error", subTitle:"You have yet authenticated", closeButtonTitle:"OK")
+            
+            
+          /* this is how we print out items from each dog
+            self.numberofdogrelations = json["dog_relations"].count
+            print ("Count of related dogs: \(self.numberofdogrelations)")
+            if let weight = json["dog_relations"][2]["dog"]["weight"].int {
+                print("dog #3 weight: \(weight)")
+            }
+            if let name = json["dog_relations"][1]["dog"]["name"].string {
+                print("dog #2 name: \(name)")
+            }
+            
+            */
+            
+            }, failure: { error in
+                print(error.localizedDescription)
+        })
+        
+    
+        
+    }
+
+
+    
+/*    func getDogowner(oauthswift: OAuth2Swift) {
+        //get dog owner name
+        oauthswift.client.get("https://app.fitbark.com/api/v2/user", parameters: [:],
+                              success: {
+                                data, response in
+                                let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+                                //  print ("Dictionary time: \(jsonDict)")
+                                let curr_user = jsonDict["user"] as? NSDictionary?
+                                // print("current user: \(curr_user)")
+                                let fname = curr_user!!["first_name"] as? String
+                                self.dogname.text = fname
+                                if let slug = curr_user!!["slug"]  {
+                                  //  print("User's Slug: \(slug)")
+                                    self.picture = "https://app.fitbark.com/api/v2/picture/user/\(slug)"
+                                 //   print("User's Slug URL: \(self.picture)")         
+                                }
+                                
+            }, failure: { error in
+                print(error.localizedDescription)
+        })
+
+    }
+ 
+ */
+    
+    
+    // URL: https://app.fitbark.com/api/v2/picture/dog/{dog_slug} 
+
+    func getDogActivity(date1: NSDate, date2: NSDate) {
         //  func getDogActivity() {
         
         //get dog based on two dates https://app.fitbark.com/api/v2/activity_series
@@ -200,92 +316,7 @@ class ViewController: UIViewController {
         
     }
     
-func Authenticate() {
-        print ("Start authenticating and get info")
-        //authenticate and pull in the user information
-        oauthswift.client.credential.oauth_token = self.passedtoken
-        oauthswift.client.get("https://app.fitbark.com/api/v2/user",  parameters: [:],
-                                  success: {
-                                    data, response in
-                                    let jsonDict: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
-                                    print ("Dictionary time: \(jsonDict)")
-                                    
-                                    let curr_user = jsonDict["user"] as? NSDictionary?
-                                    let fname = curr_user!!["first_name"] as? String
-                                    let lname = curr_user!!["last_name"] as? String
-                                    let pichash = curr_user!!["picture_hash"] as! String
-                                    let fullname = curr_user!!["name"] as? String
-                                    let email = curr_user!!["username"] as? String
-                                    let slug = curr_user!!["slug"] as? String
-                                    let picURL = "https://app.fitbark.com/api/v2/picture/user/\(slug!)"
-                                    
-                                    self.getOwnerPic(self.oauthswift, pictureURL:picURL)
-                                    
-                                    self.useremail = email
-                                    self.userfullname = fullname
-                                }, failure: { error in
-                   
-                                    print("Error getting user information from fitbark.com")
-                                    print(error.localizedDescription)
-                                    // put up alert
-                                    SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
-                    })
-    }
 
-
-    func getOwnerPic(oauthswift: OAuth2Swift, pictureURL: String)
-    {
-               // this captures the user's profile picture
-        oauthswift.client.get(pictureURL, parameters: [:], success: {
-            data, response in
-            let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
-            let image = jsonDict["image"] as? NSDictionary?
-            let encodedImageData = image!!["data"] as? String
-            let decodedData = NSData(base64EncodedString: encodedImageData!, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-            let decodedImage = UIImage(data: decodedData!)
-            ///    self.dogpic.clipsToBounds = true
-            self.dogpic.image = decodedImage
-            print ("Done gettin gpic")
-            }, failure: { error in
-                print(error.localizedDescription)
-        })
-        
-    }
-    
-    
-
-
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-            }
-    
-    
-    func getDogowner(oauthswift: OAuth2Swift) {
-        //get dog owner name
-        oauthswift.client.get("https://app.fitbark.com/api/v2/user", parameters: [:],
-                              success: {
-                                data, response in
-                                let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
-                                //  print ("Dictionary time: \(jsonDict)")
-                                let curr_user = jsonDict["user"] as? NSDictionary?
-                                // print("current user: \(curr_user)")
-                                let fname = curr_user!!["first_name"] as? String
-                                self.dogname.text = fname
-                                if let slug = curr_user!!["slug"]  {
-                                  //  print("User's Slug: \(slug)")
-                                    self.picture = "https://app.fitbark.com/api/v2/picture/user/\(slug)"
-                                 //   print("User's Slug URL: \(self.picture)")         
-                                }
-                                
-            }, failure: { error in
-                print(error.localizedDescription)
-        })
-
-    }
-    // self.pictureURL = "https://app.fitbark.com/api/v2/picture/user/\(slug)"
-    // URL: https://app.fitbark.com/api/v2/picture/dog/{dog_slug} 
     
     func testFitbark(oauthswift: OAuth2Swift) {
         //print("Inside fitbark - go get user name")
@@ -326,7 +357,7 @@ func Authenticate() {
         })
         */
         
- // this captures the user's profile picture
+
         oauthswift.client.get(self.picture, parameters: [:], success: {
                                 data, response in
                                 let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
@@ -432,7 +463,7 @@ extension ViewController {
         }
         return "\(appPath)Services.plist"
     }
-    
+    /*
     func initConf() {
         
         // print("Load configuration from: \(self.confPath)")
@@ -449,26 +480,9 @@ extension ViewController {
         services.loadFromFile(confPath)
     }
     
+    */
     
-    func showAlertView(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func showTokenAlert(name: String?, credential: OAuthSwiftCredential) {
-        var message = "oauth_token:\(credential.oauth_token)"
-        if !credential.oauth_token_secret.isEmpty {
-            message += "\n\noauth_toke_secret:\(credential.oauth_token_secret)"
-        }
-        self.showAlertView(name ?? "Service", message: message)
-        
-        if let service = name {
-            services.updateService(service, dico: ["authentified":"1"])
-            // TODO refresh graphic
-        }
-    }
-    
+
     // MARK: create an optionnal internal web view to handle connection
     func createWebViewController() -> WebViewController {
         let controller = WebViewController()

@@ -21,6 +21,7 @@
 		946961171CBDEB00009589FC /* iron-chain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 946961151CBDEB00009589FC /* iron-chain.jpg */; };
 		946961191CBF22D8009589FC /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946961181CBF22D8009589FC /* CloudViewController.swift */; };
 		947A6FB21CCC2E560053E1BC /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 947A6FB11CCC2E560053E1BC /* setting.png */; };
+		947A6FCE1CCD752F0053E1BC /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 947A6FC71CCD74FC0053E1BC /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */; };
 		94F6AC6F1CB0B338006FFB8F /* DogUserStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC6E1CB0B338006FFB8F /* DogUserStructure.swift */; };
 		94F6AC771CB2D5C6006FFB8F /* EPCalendarPicker in Resources */ = {isa = PBXBuildFile; fileRef = 94F6AC761CB2D5C6006FFB8F /* EPCalendarPicker */; };
@@ -129,6 +130,34 @@
 			remoteGlobalIDString = C4FF650B1B6B7C7300BFE4F4;
 			remoteInfo = PrephirencesiOSTests;
 		};
+		947A6FC61CCD74FC0053E1BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		947A6FC81CCD74FC0053E1BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		947A6FCA1CCD74FC0053E1BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
+			remoteInfo = "Charts-OSX";
+		};
+		947A6FCC1CCD74FC0053E1BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +167,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				947A6FCE1CCD752F0053E1BC /* Charts.framework in Embed Frameworks */,
 				943E62EA1CAEEE9900177CD4 /* Prephirences.framework in Embed Frameworks */,
 				943E62C31CAEE34F00177CD4 /* OAuthSwift.framework in Embed Frameworks */,
 			);
@@ -162,6 +192,7 @@
 		946961161CBDEB00009589FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Base; path = "Base.lproj/iron-chain.jpg"; sourceTree = "<group>"; };
 		946961181CBF22D8009589FC /* CloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		947A6FB11CCC2E560053E1BC /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoggyDetailsViewController.swift; sourceTree = "<group>"; };
 		94F6AC6E1CB0B338006FFB8F /* DogUserStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogUserStructure.swift; sourceTree = "<group>"; };
 		94F6AC761CB2D5C6006FFB8F /* EPCalendarPicker */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EPCalendarPicker; path = /Users/ryan/Downloads/DoggyAI/EPCalendarPicker; sourceTree = "<absolute>"; };
@@ -248,6 +279,17 @@
 			path = SCLAlertView;
 			sourceTree = "<group>";
 		};
+		947A6FC01CCD74FB0053E1BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				947A6FC71CCD74FC0053E1BC /* Charts.framework */,
+				947A6FC91CCD74FC0053E1BC /* Charts.framework */,
+				947A6FCB1CCD74FC0053E1BC /* Charts.framework */,
+				947A6FCD1CCD74FC0053E1BC /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		94F6AC8A1CB33E39006FFB8F /* calendar files */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +307,7 @@
 		9EA98E831CA5773E0062B2C7 = {
 			isa = PBXGroup;
 			children = (
+				947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */,
 				944C6FB71CCA57F9006194B4 /* Foundation.framework */,
 				944C6FB51CCA57F2006194B4 /* UIKit.framework */,
 				944C6FAE1CCA5711006194B4 /* SCLAlertView */,
@@ -369,6 +412,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 947A6FC01CCD74FB0053E1BC /* Products */;
+					ProjectRef = 947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */;
+				},
+				{
 					ProductGroup = 9437E85B1CAEE18A00F20CA6 /* Products */;
 					ProjectRef = 9437E85A1CAEE18A00F20CA6 /* OAuthSwift.xcodeproj */;
 				},
@@ -467,6 +514,34 @@
 			fileType = wrapper.cfbundle;
 			path = PrephirencesiOSTests.xctest;
 			remoteRef = 943E62E71CAEE4BA00177CD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		947A6FC71CCD74FC0053E1BC /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 947A6FC61CCD74FC0053E1BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		947A6FC91CCD74FC0053E1BC /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 947A6FC81CCD74FC0053E1BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		947A6FCB1CCD74FC0053E1BC /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 947A6FCA1CCD74FC0053E1BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		947A6FCD1CCD74FC0053E1BC /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 947A6FCC1CCD74FC0053E1BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

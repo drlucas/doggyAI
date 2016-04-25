@@ -8,7 +8,7 @@
 
 import UIKit
 import CloudKit
-
+import Charts
 
 class CloudViewController: UIViewController {
 
@@ -18,7 +18,8 @@ class CloudViewController: UIViewController {
     var userrecord:CKRecordID!
     let dogRecord = CKRecord(recordType: "Dogs")
     @IBOutlet var dogImageView: UIImageView!
-    
+    var dogs = [Dog]()  // an array of dog records - names/slugs/ages/etc that we get back from related dogs
+
     
     /*
      struct Dog {
@@ -35,6 +36,40 @@ class CloudViewController: UIViewController {
         //exit back maybe need this function in home view controller 
         
     }
+    
+    public func saveRecord(records: [Dog]) -> Int  {
+        //if dog record doesnt exits save it
+        for dog in records {
+            print("Dog Slug: \(dog.slug)")
+            
+            let query = CKQuery(recordType: "Dogs", predicate: NSPredicate(format: "slug = %@", dog.slug ))
+            
+            print ("Query: \(query)")
+            publicDB.performQuery(query, inZoneWithID: nil) { (therecords, error) in
+                print("Record: \(therecords?.count)")
+                    for user in therecords! {
+                        
+                        print("User: \(user)")
+                        print("User firstname: \(user["name"])")
+                        
+                        let downloadedimage = user["image"] as! CKAsset
+                        self.dogImageView.image = UIImage(
+                            contentsOfFile: downloadedimage.fileURL.path!
+                        )
+                        
+                        
+                    }
+                    
+                }
+            }
+            
+        
+
+        return 0
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
