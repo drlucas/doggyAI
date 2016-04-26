@@ -16,6 +16,7 @@ class CloudViewController: UIViewController {
     var thepasseddog:Dog!
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var userrecord:CKRecordID!
+    
     let dogRecord = CKRecord(recordType: "Dogs")
     @IBOutlet var dogImageView: UIImageView!
     var dogs = [Dog]()  // an array of dog records - names/slugs/ages/etc that we get back from related dogs
@@ -37,40 +38,80 @@ class CloudViewController: UIViewController {
         
     }
     
-    public func saveRecord(records: [Dog]) -> Int  {
+    public func saveRecord(fitbarkdogs: [Dog]) -> Int  {
         //if dog record doesnt exits save it
-        for dog in records {
-            print("Dog Slug: \(dog.slug)")
-            
-            let query = CKQuery(recordType: "Dogs", predicate: NSPredicate(format: "slug = %@", dog.slug ))
-            
-            print ("Query: \(query)")
+        print ("Total number of dogs \(fitbarkdogs.count)")
+        for eachdog in fitbarkdogs {
+            // look at all the dogs that I have downloaded from fitbark.com and then search CloudKit to see if they already exist
+            // if they already exist then I'll want to update any changes, but if they don't exist then I'll need to create them
+            // print("Dog Slug: \(dog.slug)")
+            let query = CKQuery(recordType: "Dogs", predicate: NSPredicate(format: "slug == %@", eachdog.slug ))
+            //print ("Query: \(query)")
             publicDB.performQuery(query, inZoneWithID: nil) { (therecords, error) in
-                print("Record: \(therecords?.count)")
-                    for user in therecords! {
-                        
-                        print("User: \(user)")
-                        print("User firstname: \(user["name"])")
-                        
-                        let downloadedimage = user["image"] as! CKAsset
-                        self.dogImageView.image = UIImage(
-                            contentsOfFile: downloadedimage.fileURL.path!
-                        )
-                        
-                        
+                if (therecords?.count  == 1) { //my record is already in the cloud, so download it and compare it to the dog record for any changes
+                      for dogrecord in therecords! {
+                        print ("Dog record was in CloudKitwe need to see if it was modified and save any changes")
+                        print("Dog record from cloudkit is: \(dogrecord.objectForKey("name"))")
+                        print("Dog record from fitbark: \(eachdog.name)")
+                      
                     }
-                    
                 }
+                
+            }
+        }
+        for eachdog in fitbarkdogs {
+            // look at all the dogs that I have downloaded from fitbark.com and then search CloudKit to see if they already exist
+            // if they already exist then I'll want to update any changes, but if they don't exist then I'll need to create them
+            // print("Dog Slug: \(dog.slug)")
+            let query = CKQuery(recordType: "Dogs", predicate: NSPredicate(format: "slug != %@", eachdog.slug ))
+            //print ("Query: \(query)")
+            publicDB.performQuery(query, inZoneWithID: nil) { (therecords, error) in
+                if (therecords?.count  == 1) { //my record is not in the cloud
+                    for dogrecord in therecords! {
+                        print ("Dog record was not in CloudKit")
+                        print("Start saving dog record from fitbark: \(eachdog.name)")
+                        self.SaveDogRecord(eachdog)
+                    }
+                }
+                
+             
+                
+                
             }
             
-        
-
-        return 0
+        }
+        return 1
     }
+
     
-    
-    
-    
+    func SaveDogRecord(dog2save: Dog) {
+        /*SAVE*/
+        
+        dogRecord["name"] = dog2save.name
+        dogRecord["gender"] =  dog2save.gender
+        dogRecord["last_sync"] = NSDate()
+        dogRecord["owner_slug"] = dog2save.owner
+        dogRecord["slug"] = dog2save.slug
+
+        
+        //  publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
+        //publicDB.saveRecord(spaceshipRecord) { (record, error) in }
+        
+        publicDB.saveRecord(dogRecord, completionHandler: ({returnRecord, error in
+                if let err = error {
+                    print("Error saving record for owner \(error)")
+
+            }
+                else {
+                    self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
+                    print("Dog  saved")
+            }
+        
+    }))
+    }
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getusername()
