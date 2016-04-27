@@ -211,7 +211,7 @@ func GetOwnerDogs(userslug: String) {
                     self.ownderdogcount = self.ownderdogcount + 1
                 }
             }
-            
+        
             self.dogtableview.reloadData()
             //now go save the records to the cloud
             CloudViewController().saveRecord(self.dogs)

@@ -38,50 +38,41 @@ class CloudViewController: UIViewController {
         
     }
     
-    public func saveRecord(fitbarkdogs: [Dog]) -> Int  {
+
+    public func saveRecord
+        (fitbarkdogs: [Dog]) -> Int  {
         //if dog record doesnt exits save it
+        print ("----- debug saveRecord -----")
         print ("Total number of dogs \(fitbarkdogs.count)")
         for eachdog in fitbarkdogs {
-            // look at all the dogs that I have downloaded from fitbark.com and then search CloudKit to see if they already exist
+            // for each dog that I have downloaded from fitbark.com - search CloudKit to see if they already exist
             // if they already exist then I'll want to update any changes, but if they don't exist then I'll need to create them
             // print("Dog Slug: \(dog.slug)")
-            let query = CKQuery(recordType: "Dogs", predicate: NSPredicate(format: "slug == %@", eachdog.slug ))
-            //print ("Query: \(query)")
-            publicDB.performQuery(query, inZoneWithID: nil) { (therecords, error) in
-                if (therecords?.count  == 1) { //my record is already in the cloud, so download it and compare it to the dog record for any changes
-                      for dogrecord in therecords! {
-                        print ("Dog record was in CloudKitwe need to see if it was modified and save any changes")
-                        print("Dog record from cloudkit is: \(dogrecord.objectForKey("name"))")
-                        print("Dog record from fitbark: \(eachdog.name)")
-                      
-                    }
+           // print ("First loop of each dog slug: \(eachdog.slug)")
+            let predicate = NSPredicate(format: "slug BEGINSWITH %@", eachdog.slug)
+            let query = CKQuery(recordType: "Dogs", predicate: predicate)
+            print ("Query: \(query)")
+            publicDB.performQuery(query, inZoneWithID: nil, completionHandler:  { results, error in
+                if let err = error {
+                    print ("Error with query: \(err)")
                 }
-                
-            }
-        }
-        for eachdog in fitbarkdogs {
-            // look at all the dogs that I have downloaded from fitbark.com and then search CloudKit to see if they already exist
-            // if they already exist then I'll want to update any changes, but if they don't exist then I'll need to create them
-            // print("Dog Slug: \(dog.slug)")
-            let query = CKQuery(recordType: "Dogs", predicate: NSPredicate(format: "slug != %@", eachdog.slug ))
-            //print ("Query: \(query)")
-            publicDB.performQuery(query, inZoneWithID: nil) { (therecords, error) in
-                if (therecords?.count  == 1) { //my record is not in the cloud
-                    for dogrecord in therecords! {
-                        print ("Dog record was not in CloudKit")
-                        print("Start saving dog record from fitbark: \(eachdog.name)")
-                        self.SaveDogRecord(eachdog)
-                    }
+                //print (results?.count)
+                if results?.count == 0 {
+                    print ("Dog record \(eachdog.slug) was not in CloudKit")
+                    print("Start saving dog record from fitbark: \(eachdog.name)")
+                    self.SaveDogRecord(eachdog)
                 }
-                
-             
-                
-                
-            }
-            
+                    
+                else {
+                print ("Dog record \(eachdog.slug) was in CloudKit")
+                print("so lets check to see if it was changed since last checked ")
+                }
+            })
         }
+        
         return 1
     }
+
 
     
     func SaveDogRecord(dog2save: Dog) {
@@ -93,17 +84,13 @@ class CloudViewController: UIViewController {
         dogRecord["owner_slug"] = dog2save.owner
         dogRecord["slug"] = dog2save.slug
 
-        
-        //  publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
-        //publicDB.saveRecord(spaceshipRecord) { (record, error) in }
-        
         publicDB.saveRecord(dogRecord, completionHandler: ({returnRecord, error in
                 if let err = error {
                     print("Error saving record for owner \(error)")
 
             }
                 else {
-                    self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
+                    //self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
                     print("Dog  saved")
             }
         
@@ -114,7 +101,7 @@ class CloudViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getusername()
+      //  getusername()
      //   doSubmission()   /////save a record
   
         
