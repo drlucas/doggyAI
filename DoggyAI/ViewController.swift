@@ -81,9 +81,121 @@ class ViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    
+    
     @IBAction func settingsbutton(sender: UIButton) {
-        print ("Go to settings screen")
-    }
+        //func getDogActivity(date1: NSDate, date2: NSDate) {
+            //  func getDogActivity() {
+            //get dog based on two dates https://app.fitbark.com/api/v2/activity_series
+            /*
+             {
+             "activity_series":{
+             "slug":"1ba28be9-4e9e-4583-b7d8-b6bb84b17da7",  //Archie's slug
+             "from":"2013-03-02",
+             "to":"2014-09-02",
+             "resolution":"DAILY"
+             }
+             }
+             */
+            let date1 = self.fromdate
+            let date2 = self.todate
+            let dogactivityURL = "https://app.fitbark.com/api/v2/activity_series"
+            //let date1str = String(date1)
+            //let date2str = String(date2)
+            let jsonparameters = ["activity_series":
+                ["slug": "1ba28be9-4e9e-4583-b7d8-b6bb84b17da7", //archie slug
+                    "from":"2016-04-01",
+                    "to":"2016-04-08",
+                    "resolution":"HOURLY"
+                ]
+            ]
+            oauthswift.client.post(dogactivityURL, parameters: jsonparameters, headers: ["Content-Type":"application/json"],        success: {
+                data, response in
+                let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+                print("SUCCESS: \(jsonDict)")
+               // let json = JSON(data: jsonDict)
+            /*
+                 let json = JSON(data: jsonDict)
+                 print ("Count: \(json.count)")
+                 for item in json["daily_goals"].arrayValue {
+                 let dogdate = item["date"].stringValue
+                 let doggoal = item["goal"].int
+                 // print("Dog date: \(dogdate)")
+                for item in data {
+                      print("Name: \(item["activity_series"].stringValue)")
+                       print("Status: \(item["status"].stringValue)")
+                    print("Dog goal: \(item)")
+                }
+                
+ */
+                
+                }, failure: { error in
+                    print("Bad error: \(error)")
+            })
+            
+        }
+        
+    
+    
+    
+    
+    func getDailyGoals () // need to use an input of dogslug {
+    {
+    
+        print ("Get dog's current daily and future goals")
+        /*         Get a dog’s current daily goal and future daily goals set by an authorized user (if any).
+         URL: https://app.fitbark.com/api/v2/daily_goal/{dog_slug}
+         HTTP Method: GET
+         Response example
+         {"daily_goals":[
+         {"goal": 3000,
+         "date" : "2014-08-15"
+         },{
+         "goal": 4000,
+         "date" : "2014-08-20" /* previous daily goal of 3000 applies until 2014-08-19 */
+         },{
+         "goal": 4500,
+         "date" : "2014-09-15" /* previous daily goal of 4000 applies until 2014-09-14 */
+         },...]}
+ 
+         //MAY HAVE TO USE AN ARRAY vs struct...string list and then do a string --> int cast
+         struct DailyGoal {
+            var goaldate = String();
+            var goaltarget = Int()
+        }
+ 
+ */
+        
+        var daily_goals = [DailyGoal] () // an array that will contain all our daily goals
+        oauthswift.client.credential.oauth_token = self.passedtoken
+        oauthswift.client.get("https://app.fitbark.com/api/v2/daily_goal/ac8116d7-3c6c-4029-ad73-7feedcc18239", parameters: [:], success: {
+            data, response in
+            let json = JSON(data: data)
+            print ("Count: \(json.count)")
+            for item in json["daily_goals"].arrayValue {
+                    let dogdate = item["date"].stringValue
+                    let doggoal = item["goal"].int
+                   // print("Dog date: \(dogdate)")
+                   // print("Dog goal: \(doggoal)")
+                
+            let mydailygoal = DailyGoal(goaldate:dogdate, goaltarget:doggoal!)
+            // self.dogs[self.ownderdogcount].name = dogname
+            // self.dogs[self.ownderdogcount].slug = dogslug
+            daily_goals.append(mydailygoal)
+                print (mydailygoal)
+                let dogslug = "ac8116d7-3c6c-4029-ad73-7feedcc18239"
+                CloudViewController().SaveDailyGoals(dogslug, mygoals:daily_goals)
+               
+            }
+        
+        
+            }, failure: { error in
+                print(error.localizedDescription)
+        })
+        
+}
+
+        
     
    
     @IBOutlet var dogname: UILabel!
@@ -98,7 +210,6 @@ class ViewController: UIViewController {
      
       print ("Fetch Dogs")
         self.dogname.text = useremail
-        
         self.ownderdogcount = 0
         self.testFitbark(self.oauthswift)
         // this retreives all the user's related dogs

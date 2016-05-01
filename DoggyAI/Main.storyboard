@@ -169,7 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pB-D5-beS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414" y="98"/>
+            <point key="canvasLocation" x="475" y="109"/>
         </scene>
         <!--Cloud View Controller-->
         <scene sceneID="xHS-0S-cZM">

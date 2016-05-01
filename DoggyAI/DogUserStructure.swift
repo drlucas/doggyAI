@@ -18,6 +18,11 @@ struct Dog {
     var owner = String(); // this will be the slug of the dogs's owner
 }
 
+struct DailyGoal {
+    var goaldate = String();
+    var goaltarget = Int()
+}
+
 /*
  "id": 13,
  "status": "OWNER",

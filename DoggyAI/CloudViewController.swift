@@ -73,7 +73,38 @@ class CloudViewController: UIViewController {
         return 1
     }
 
-
+    func SaveDailyGoals(dog2save:String, mygoals:[DailyGoal] ) {
+        //get the recordID for the dogslug (which is dog2save)
+        //then replace the Dog record field with the new dailygoals string list
+        var shoppingList: [String] = ["bacons","Googles" ,"Milk"]
+        let predicate = NSPredicate(format: "slug BEGINSWITH %@", dog2save)
+        let query = CKQuery(recordType: "Dogs", predicate: predicate)
+        //
+       // let predicate = yourPredicate // better be accurate to get only the record you need
+       // var query = CKQuery(recordType: YourRecordType, predicate: predicate)
+        publicDB.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) in
+            if error != nil {
+                print("Error querying records: \(error!.localizedDescription)")
+            } else {
+                if records!.count > 0 {
+                    let record = records!.first! as CKRecord
+                    // Now you have grabbed your existing record from iCloud
+                    // Apply whatever changes you want
+                    record.setObject(shoppingList, forKey: "daily_goals")
+                    
+                    // Save this record again
+                    self.publicDB.saveRecord(record, completionHandler: { (savedRecord, saveError)in
+                        if saveError != nil {
+                        print("Error saving record: \(saveError!.localizedDescription)")
+                        } else {
+                        print("Successfully updated record!")
+                        }
+                    })
+                }
+            }
+        })
+        
+    }
     
     func SaveDogRecord(dog2save: Dog) {
         /*SAVE*/
