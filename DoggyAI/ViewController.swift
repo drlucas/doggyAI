@@ -96,6 +96,23 @@ class ViewController: UIViewController {
              "resolution":"DAILY"
              }
              }
+                              {
+         "activity_series" =     {
+         records =         (
+         {
+         "activity_value" = 49;
+         date = "2016-04-01 00:00:00";
+         "min_active" = 13;
+ 
+        ActivityRecord (cloudkit record format - )
+         activity_list - Int(64) List
+         date - Date/Time
+         minute_activity_list - Int(64) List
+         minute_play_list - Int(64) List
+         minute_rest_list - Int(64) List
+         slug - String
+         
+         
              */
             let date1 = self.fromdate
             let date2 = self.todate
@@ -104,30 +121,41 @@ class ViewController: UIViewController {
             //let date2str = String(date2)
             let jsonparameters = ["activity_series":
                 ["slug": "1ba28be9-4e9e-4583-b7d8-b6bb84b17da7", //archie slug
-                    "from":"2016-04-01",
-                    "to":"2016-04-08",
+                    "from":"2016-04-15",
+                    "to":"2016-04-15",
                     "resolution":"HOURLY"
                 ]
             ]
-            oauthswift.client.post(dogactivityURL, parameters: jsonparameters, headers: ["Content-Type":"application/json"],        success: {
-                data, response in
-                let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
-                print("SUCCESS: \(jsonDict)")
-               // let json = JSON(data: jsonDict)
-            /*
-                 let json = JSON(data: jsonDict)
-                 print ("Count: \(json.count)")
-                 for item in json["daily_goals"].arrayValue {
-                 let dogdate = item["date"].stringValue
-                 let doggoal = item["goal"].int
-                 // print("Dog date: \(dogdate)")
-                for item in data {
-                      print("Name: \(item["activity_series"].stringValue)")
-                       print("Status: \(item["status"].stringValue)")
-                    print("Dog goal: \(item)")
+            oauthswift.client.post(dogactivityURL, parameters: jsonparameters, headers: ["Content-Type":"application/json"],        success: { data, response in
+            let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers)
+           
+            if let dict = jsonDict as? [String: AnyObject] {
+                    if let actseries = dict["activity_series"]!["records"] as? [AnyObject] {
+                        var play_list: [Int] =  []
+                        var rest_list: [Int] =  []
+                        var active_list: [Int] =  []
+                        var date_time_list: [String] =  []
+                        var fitbarkpoints_list: [Int] =  []
+                            for (index, dict2) in actseries.enumerate() {
+                                let fbp_value = dict2["activity_value"] as? Int
+                                let act_date = dict2["date"] as? String
+                                let min_active_value = dict2["min_active"] as? Int
+                                let min_play_value = dict2["min_play"] as? Int
+                                let min_rest_value = dict2["min_rest"] as? Int
+                                play_list.append(min_play_value!)
+                                rest_list.append(min_rest_value!)
+                                active_list.append(min_active_value!)
+                                fitbarkpoints_list.append(fbp_value!)
+                                date_time_list.append(act_date!)
+                            }
+                       //Go save the record now --
+                        //print ( rest_list, active_list, play_list, fitbarkpoints_list, date_time_list, dog_slug)
+                        let dogslug = "1ba28be9-4e9e-4583-b7d8-b6bb84b17da7"
+                        CloudViewController().SaveDailyActivity(dogslug, thedate:date_time_list[0], min_active:active_list, min_play:play_list, min_rest:rest_list, fitbarkpts: fitbarkpoints_list)
+
+                        
+                    }
                 }
-                
- */
                 
                 }, failure: { error in
                     print("Bad error: \(error)")

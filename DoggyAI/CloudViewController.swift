@@ -16,7 +16,7 @@ class CloudViewController: UIViewController {
     var thepasseddog:Dog!
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var userrecord:CKRecordID!
-    
+    let activityrecord = CKRecord(recordType: "ActivityRecord")
     let dogRecord = CKRecord(recordType: "Dogs")
     @IBOutlet var dogImageView: UIImageView!
     var dogs = [Dog]()  // an array of dog records - names/slugs/ages/etc that we get back from related dogs
@@ -72,6 +72,36 @@ class CloudViewController: UIViewController {
         
         return 1
     }
+    
+    func SaveDailyActivity(dogslug:String, thedate:String, min_active:[Int], min_play:[Int], min_rest:[Int], fitbarkpts:[Int]) {
+        print("Savelist")
+        //double check before we save the record for the dog that we didn't already do it
+        
+        //if we already have saved it, we may want to see if it changed and modify it 
+        
+        
+        //otherwise, lets save the record
+        activityrecord["fitbarkpts"] = fitbarkpts
+        activityrecord["minute_active_list"] =  min_active
+        activityrecord["minute_play_list"] = min_play
+        activityrecord["minute_rest_list"] = min_rest
+        activityrecord["slug"] = dogslug
+        
+        publicDB.saveRecord(activityrecord, completionHandler: ({returnRecord, error in
+            if let err = error {
+                print("Error saving record for owner \(error)")
+                
+            }
+            else {
+                //self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
+                print("Dog activity saved")
+            }
+            
+        }))
+
+    }
+    
+
 
     func SaveDailyGoals(dog2save:String, mygoals:[DailyGoal] ) {
         //get the recordID for the dogslug (which is dog2save)
