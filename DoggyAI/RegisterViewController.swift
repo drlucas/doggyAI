@@ -40,6 +40,7 @@ class RegisterViewController: UIViewController {
     let debug = true   // used to print debug info to the All output screen
     var authtoken = "" as String! // my authentication token to use in fitbark
     var tokendate:NSDate! //date when token was originally created
+    var userslug = "" as String! // my users slug from fitbark
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var firstnameLabel: UILabel!
@@ -151,6 +152,8 @@ class RegisterViewController: UIViewController {
                        
                         print("Dog Owner  firstname: \(owner["first_name"])")
                         print("Dog Owner  token date: \(owner["token_date"])")
+                        print("Dog Owner's slug: \(owner["slug"])")
+                        self.userslug = String(owner["slug"])
                     }
                     
                     //  let downloadedimage = user["image"] as! CKAsset
@@ -191,15 +194,38 @@ class RegisterViewController: UIViewController {
     }
     
     
+    func getuserslug() {
+        print ("getuserslug")
+        self.oauthswift.accessTokenBasicAuthentification = true
+        let state: String = generateStateWithLength(20) as String
+        self.oauthswift.client.get("https://app.fitbark.com/api/v2/user",  parameters: [:],
+                              success: {
+                                data, response in
+                                let jsonDict: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
+                                let curr_user = jsonDict["user"] as? NSDictionary?
+                                let slug = curr_user!!["slug"] as? String
+                                self.userslug = slug
+                                print("Slug- \(self.userslug)")
+            }, failure: { error in
+                
+                print("Error getting user information from fitbark.com")
+                print(error.localizedDescription)
+                // put up alert
+                SCLAlertView().showError("Error", subTitle:"\(error.localizedDescription)", closeButtonTitle:"OK")
+        })
+        print ("gotuserslug")
+
+    }
+
     func SaveOwnerRecord() {
         /*SAVE*/
         //     self.keychain["the_token_key"] = self.oauthswift.client.credential.oauth_token
-        
+        authtoken = self.oauthswift.client.credential.oauth_token
         OwnerRecord["first_name"] = self.firstnameLabel.text
         OwnerRecord["last_name"] = self.lastnameLabel.text
         OwnerRecord["token"] = self.oauthswift.client.credential.oauth_token
-        authtoken = self.oauthswift.client.credential.oauth_token
         OwnerRecord["token_date"] = NSDate()
+        OwnerRecord["slug"] = self.userslug
         publicDB.saveRecord(OwnerRecord) { [unowned self] (record, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if error == nil {
@@ -212,8 +238,7 @@ class RegisterViewController: UIViewController {
             }
         }
     }
-
-
+    
 func loginUser() {
         //get our main token from FitBark authorization. 
         //if we fail to get a token, try again, otherwise we save the token record into CloudKit
@@ -227,8 +252,14 @@ func loginUser() {
             print ("Response: \(response)")
             print ("State: \(state)")
             print ("Token: \(credential.oauth_token)")
+            
             }
-            self.SaveOwnerRecord()
+            self.getuserslug()
+            self.delay(3.0) {
+            print ("delayed")
+                self.SaveOwnerRecord()
+            }
+            
             
             }, failure: { error in
                 if error.localizedDescription == "Missing state" {
@@ -240,6 +271,19 @@ func loginUser() {
     }
     
    
+    
+    
+    func delay(delay: Double, closure: ()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(),
+            closure
+        )
+    }
+    
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "loadmain" {
@@ -261,13 +305,21 @@ func loginUser() {
             print ("Prepare to segue to doggy world main menu")
             let destination = segue.destinationViewController as! ViewController
             destination.passedtoken = authtoken
-            
+            destination.userslug = self.userslug
+            print ("User passed over is \(self.userslug)")
         }
         
         if segue.identifier == "savesettings" {
             let destination = segue.destinationViewController as! CloudViewController
                       print ("Prepare to segue to save settings")
         }
+        
+        if segue.identifier == "dogactivity" {
+            let destination = segue.destinationViewController as! CloudViewController
+          //  destination.passedtoken = authtoken
+            print ("Prepare to dog activity...segue to save settings")
+        }
+
         
     }
     

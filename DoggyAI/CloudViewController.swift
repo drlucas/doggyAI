@@ -20,7 +20,7 @@ class CloudViewController: UIViewController {
     let dogRecord = CKRecord(recordType: "Dogs")
     @IBOutlet var dogImageView: UIImageView!
     var dogs = [Dog]()  // an array of dog records - names/slugs/ages/etc that we get back from related dogs
-
+    var userslug:String! // the string for the user that was passed over from previous controller
     
     /*
      struct Dog {
@@ -74,31 +74,58 @@ class CloudViewController: UIViewController {
     }
     
     func SaveDailyActivity(dogslug:String, thedate:String, min_active:[Int], min_play:[Int], min_rest:[Int], fitbarkpts:[Int]) {
-        print("Savelist")
+        
         //double check before we save the record for the dog that we didn't already do it
-        
-        //if we already have saved it, we may want to see if it changed and modify it 
-        
-        
-        //otherwise, lets save the record
-        activityrecord["fitbarkpts"] = fitbarkpts
-        activityrecord["minute_active_list"] =  min_active
-        activityrecord["minute_play_list"] = min_play
-        activityrecord["minute_rest_list"] = min_rest
-        activityrecord["slug"] = dogslug
-        
-        publicDB.saveRecord(activityrecord, completionHandler: ({returnRecord, error in
-            if let err = error {
-                print("Error saving record for owner \(error)")
-                
-            }
-            else {
-                //self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
-                print("Dog activity saved")
-            }
-            
-        }))
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let mydate = dateFormatter.dateFromString(thedate)
+        //print("Savelist of activities - dog date is: \(thedate) and \(mydate)")
+        //let adogslug = "AAAA"
+        let predicate = NSPredicate(format: "(slug BEGINSWITH %@) AND (date == %@)", dogslug, mydate!)
+        let query = CKQuery(recordType: "ActivityRecord", predicate: predicate)
+        print ("Query: \(query)")
+        publicDB.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) in
+            if error != nil {
+                print("Error querying records: \(error!.localizedDescription)")
+            } else {
+                if records!.count > 0 {
+                    let record = records!.first! as CKRecord
+                    // Now you have grabbed your existing record from iCloud
+                     print ("we have a record \(records)")
+                    
+                                    }
+                else {
+                //we have no records, so safe to save
+                print("we dont' have a record, so safe to save")
+                    //otherwise, lets save the record
+                    self.activityrecord["fitbarkpts"] = fitbarkpts
+                    self.activityrecord["minute_active_list"] =  min_active
+                    self.activityrecord["minute_play_list"] = min_play
+                    self.activityrecord["minute_rest_list"] = min_rest
+                    self.activityrecord["slug"] = dogslug
+                    self.activityrecord["date"]  = mydate
+                    self.publicDB.saveRecord(self.activityrecord, completionHandler: ({returnRecord, error in
+                        if let err = error {
+                            print("Error saving record for owner \(error)")
+                            
+                        }
+                        else {
+                            //self.view.backgroundColor = UIColor(red: 0, green: 0.6, blue: 0, alpha: 1)
+                            print("Dog activity saved")
+                        }
+                        
+                    }))
 
+                
+                }
+ 
+            }
+        })
+
+        //if we already have saved it, we may want to see if it changed and modify it
+        
+        
+        
     }
     
 
@@ -106,7 +133,7 @@ class CloudViewController: UIViewController {
     func SaveDailyGoals(dog2save:String, mygoals:[DailyGoal] ) {
         //get the recordID for the dogslug (which is dog2save)
         //then replace the Dog record field with the new dailygoals string list
-        var shoppingList: [String] = ["bacons","Googles" ,"Milk"]
+      //  var shoppingList: [String] = ["bacons","Googles" ,"Milk"]
         let predicate = NSPredicate(format: "slug BEGINSWITH %@", dog2save)
         let query = CKQuery(recordType: "Dogs", predicate: predicate)
         //
@@ -120,7 +147,7 @@ class CloudViewController: UIViewController {
                     let record = records!.first! as CKRecord
                     // Now you have grabbed your existing record from iCloud
                     // Apply whatever changes you want
-                    record.setObject(shoppingList, forKey: "daily_goals")
+                    //record.setObject(shoppingList, forKey: "daily_goals")
                     
                     // Save this record again
                     self.publicDB.saveRecord(record, completionHandler: { (savedRecord, saveError)in
@@ -164,7 +191,7 @@ class CloudViewController: UIViewController {
         super.viewDidLoad()
       //  getusername()
      //   doSubmission()   /////save a record
-  
+  print("I'm in cloud controller")
         
            }
 
@@ -271,6 +298,14 @@ func getusername() {
     }
     
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "chartadog" {
+            print ("Prepare to segue to chart screen")
+            let destination = segue.destinationViewController as! DogChart
+            destination.userslug = self.userslug
+        }
+    }
+
 
     
     

@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     var user:User! // our user record
     var useremail: String!
     var userfullname: String!
-    
+    var userslug: String! //the slug we got from the registration program
     
     var mydogtopass:Dog!  //the dog in the table
     
@@ -231,7 +231,9 @@ class ViewController: UIViewController {
     @IBOutlet var dogtableview: UITableView!
     
     @IBAction func GetCloud(sender: AnyObject) {
-        print ("CloudY")
+        print ("Get User's dogs from cloudkit")
+        //use the slug info from the user to pull like slugs from dogs
+        
     }
     
     @IBAction func FetchDogs(sender: AnyObject) {
@@ -697,8 +699,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
  
         if segue.identifier == "cloudloader" {
             let destination = segue.destinationViewController as! CloudViewController
-            destination.thepasseddog = self.mydogtopass
-            print ("Prepare to segue to cloudy world")
+            //destination.thepasseddog = self.mydogtopass
+            print("What I am passing over to cloudview is \(self.userslug)")
+           // print ("Prepare to segue to cloudy world")
+            destination.userslug = self.userslug
         }
  
     }
