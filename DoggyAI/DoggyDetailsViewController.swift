@@ -20,6 +20,7 @@ class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate  {
     var passedSlug:String!
     var date1:NSDate!
     var date2:NSDate!
+    var userslug:String! // the string for the user that was passed over from previous controller
     
     @IBOutlet var thedogpic: UIImageView!
     
@@ -30,7 +31,7 @@ class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate  {
         date2 = NSDate()
         
         print("Im in the dog table view now")
-        //print("Passed dog: \(thepasseddog.name)")
+        print("Passed dog: \(thepasseddog.slug)")
         
         dognamelabel.text = thepasseddog.name
         let decodedData = NSData(base64EncodedString:  thepasseddog.image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
@@ -114,4 +115,22 @@ class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate  {
     }
     */
 
+    
+    
+@IBAction func cancelfromCharts(segue:UIStoryboardSegue) {
+        print ("go back from chart")
+        
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "dogdailychart" {
+            print ("Prepare to segue to dog daily chart screen \(thepasseddog.slug)")
+            let destination = segue.destinationViewController as! DogDailyChart
+            destination.dogslug = thepasseddog.slug//self.userslug
+            destination.startdate = date1
+            destination.enddate = date2
+        }
+    }
+    
 }

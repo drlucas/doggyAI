@@ -17,6 +17,9 @@ class DogChart: UIViewController {
     @IBOutlet var barChartView: BarChartView!
     var userslug:String! // the username we got back
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

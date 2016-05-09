@@ -20,6 +20,8 @@
 import UIKit
 import CloudKit
 import OAuthSwift
+//import SwiftSpinner
+
 
 class RegisterViewController: UIViewController {
     
@@ -50,15 +52,40 @@ class RegisterViewController: UIViewController {
     var lastnametext = ""
   
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    
+    func demoSpinner() {
+        
+        delay(seconds: 0.1, completion: {
+            SwiftSpinner.show("Authenticating user account")
+        })
+    
+    }
+    
+    func delay(seconds seconds: Double, completion:()->()) {
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
+        
+        dispatch_after(popTime, dispatch_get_main_queue()) {
+            completion()
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
+        // Do any additional setup after loading the view.
+        self.demoSpinner()
         NSTimer.scheduledTimerWithTimeInterval(3.0, target: self,
                                                selector: #selector(RegisterViewController.updateData), userInfo: nil, repeats: true)
         
        // updateData() // just so it happens quickly the first time
         getusername()
+
         
     }
 
@@ -154,6 +181,7 @@ class RegisterViewController: UIViewController {
                         print("Dog Owner  token date: \(owner["token_date"])")
                         print("Dog Owner's slug: \(owner["slug"])")
                         self.userslug = String(owner["slug"])
+                         SwiftSpinner.hide()
                     }
                     
                     //  let downloadedimage = user["image"] as! CKAsset
