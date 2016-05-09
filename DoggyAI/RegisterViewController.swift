@@ -327,6 +327,10 @@ func loginUser() {
         return true
     }
     
+    @IBAction func cancelfromCheckDailyRecords(segue:UIStoryboardSegue) {
+        print ("go back from Dailyrecords")
+        
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "loadmain" {
@@ -346,6 +350,14 @@ func loginUser() {
             let destination = segue.destinationViewController as! CloudViewController
           //  destination.passedtoken = authtoken
             print ("Prepare to dog activity...segue to save settings")
+        }
+        
+        if segue.identifier == "checkdailyrecords" {
+            let destination = segue.destinationViewController as! CheckDailyRecords
+            print ("Prepare to pass user slug to checkdaily")
+            destination.userslug = self.userslug
+            destination.userrecord = self.userrecord
+
         }
 
         

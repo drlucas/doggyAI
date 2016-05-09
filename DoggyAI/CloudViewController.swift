@@ -134,6 +134,16 @@ class CloudViewController: UIViewController {
         //get the recordID for the dogslug (which is dog2save)
         //then replace the Dog record field with the new dailygoals string list
       //  var shoppingList: [String] = ["bacons","Googles" ,"Milk"]
+        var goalist:[String] = []
+        //struct DailyGoal {
+        //var goaldate = String();
+       // var goaltarget = Int()
+    
+        for goals in mygoals {
+         goalist.append(goals.goaldate)
+         goalist.append(String(goals.goaltarget))
+        }
+        
         let predicate = NSPredicate(format: "slug BEGINSWITH %@", dog2save)
         let query = CKQuery(recordType: "Dogs", predicate: predicate)
         //
@@ -147,7 +157,7 @@ class CloudViewController: UIViewController {
                     let record = records!.first! as CKRecord
                     // Now you have grabbed your existing record from iCloud
                     // Apply whatever changes you want
-                    //record.setObject(shoppingList, forKey: "daily_goals")
+                    record.setObject(goalist, forKey: "daily_goals")
                     
                     // Save this record again
                     self.publicDB.saveRecord(record, completionHandler: { (savedRecord, saveError)in

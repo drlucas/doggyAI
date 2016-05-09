@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94035C201CE021E300697B5B /* CheckDailyRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94035C1F1CE021E300697B5B /* CheckDailyRecords.swift */; };
 		94052BF61CD9900700CBFDE0 /* DogChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94052BF51CD9900700CBFDE0 /* DogChart.swift */; };
 		94215B281CDD4A56002D32FE /* DogDailyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94215B271CDD4A56002D32FE /* DogDailyChart.swift */; };
 		94215B3C1CE0047A002D32FE /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94215B3B1CE0047A002D32FE /* SwiftSpinner.swift */; };
@@ -180,6 +181,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		94035C1F1CE021E300697B5B /* CheckDailyRecords.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckDailyRecords.swift; sourceTree = "<group>"; };
 		94052BF51CD9900700CBFDE0 /* DogChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogChart.swift; sourceTree = "<group>"; };
 		94215B271CDD4A56002D32FE /* DogDailyChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogDailyChart.swift; sourceTree = "<group>"; };
 		94215B3B1CE0047A002D32FE /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				9EA98EA41CA5A2DB0062B2C7 /* SwiftyJSON.swift */,
 				9EA98E991CA5773E0062B2C7 /* Assets.xcassets */,
 				9EA98F091CA74D760062B2C7 /* Main.storyboard */,
+				94035C1F1CE021E300697B5B /* CheckDailyRecords.swift */,
 				94215B271CDD4A56002D32FE /* DogDailyChart.swift */,
 				94052BF51CD9900700CBFDE0 /* DogChart.swift */,
 				9EA98EEC1CA614400062B2C7 /* Services.plist */,
@@ -597,6 +600,7 @@
 				94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */,
 				946961191CBF22D8009589FC /* CloudViewController.swift in Sources */,
 				9EA98F1C1CA86CD10062B2C7 /* DogTableViewCell.swift in Sources */,
+				94035C201CE021E300697B5B /* CheckDailyRecords.swift in Sources */,
 				94F6AC881CB33E23006FFB8F /* EPCalendarPicker.swift in Sources */,
 				9EA98ED11CA5A3590062B2C7 /* WebViewController.swift in Sources */,
 				9EA98E901CA5773E0062B2C7 /* AppDelegate.swift in Sources */,

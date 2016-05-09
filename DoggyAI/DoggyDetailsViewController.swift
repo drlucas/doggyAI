@@ -55,10 +55,8 @@ class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate  {
         //        calendarPicker.barTintColor = UIColor.greenColor()
         calendarPicker.dayDisabledTintColor = UIColor.grayColor()
         calendarPicker.title = "Activity Selection"
-        
         //        calendarPicker.backgroundImage = UIImage(named: "background_image")
         //        calendarPicker.backgroundColor = UIColor.blueColor()
-        
         let navigationController = UINavigationController(rootViewController: calendarPicker)
         self.presentViewController(navigationController, animated: true, completion: nil)
     }
