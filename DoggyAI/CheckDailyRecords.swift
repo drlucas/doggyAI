@@ -15,7 +15,7 @@ class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
     var date1:NSDate! // this is the date we want to get our activity for
     var mydoglist:[String] = []  // a list of all the slugs that I'm an owner of from cloudkit
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
-    var userslug: String! //the slug we got from the registration program
+    var userslug: String = "" //the slug we got from the registration program
     var userrecord:CKRecordID! //the user recordID we got from registration program
     let activityrecord = CKRecord(recordType: "ActivityRecord")
     let dogRecord = CKRecord(recordType: "Dogs")
@@ -53,33 +53,34 @@ class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
     func getdoglist ()  {
         //grab all the records from Dogs that have my owner slug
         //let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", userslug)
-      //  let name = "99745d34-0731-4f43-9285-58026b424e15"
-       //  let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", name)
-        let mytempstring:String = "\(userslug) ";
-        print (mytempstring)
-        let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", mytempstring)
+        //let name = "99745d34-0731-4f43-9285-58026b424e15"
+        //let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", name)
+       
+       // let localuser = "me:\(self.userslug)"
+      //  print (localuser)
+        let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", self.userslug)
         let query = CKQuery(recordType: "Dogs", predicate: predicate)
         
      //  99745d34-0731-4f43-9285-58026b424e15
      //  99745d34-0731-4f43-9285-58026b424e15
       //  let reference = CKReference(recordID: userrecord, action: .None)
-  //      let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
-  //      let query = CKQuery(recordType: "Dogs", predicate: predicate)
+  // let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
+  // let query = CKQuery(recordType: "Dogs", predicate: predicate)
         
         
-        print ("Query: \(query)")
+       // print ("Query: \(query)")
         publicDB.performQuery(query, inZoneWithID: nil, completionHandler:  { results, error in
             if let err = error {
                 print ("Error with query: \(err)")
             }
-            print (results)
+           // print (results)
             if results?.count == 0 {
                 print ("Owner has no dogs")
                 
             }
                 
             else {
-                print ("Dog record \(self.userslug) was in CloudKit")
+                print ("User record \(self.userslug) was in CloudKit")
                 print("so lets check to see if it was changed since last checked ")
             }
         })

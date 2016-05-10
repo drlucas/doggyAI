@@ -42,7 +42,8 @@ class RegisterViewController: UIViewController {
     let debug = true   // used to print debug info to the All output screen
     var authtoken = "" as String! // my authentication token to use in fitbark
     var tokendate:NSDate! //date when token was originally created
-    var userslug = "" as String! // my users slug from fitbark
+    //var userslug = "" as String! // my users slug from fitbark
+    var userslug:String = "" // my users slug from fitbark
     
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var firstnameLabel: UILabel!
@@ -180,8 +181,8 @@ class RegisterViewController: UIViewController {
                         print("Dog Owner  firstname: \(owner["first_name"])")
                         print("Dog Owner  token date: \(owner["token_date"])")
                         print("Dog Owner's slug: \(owner["slug"])")
-                        self.userslug = String(owner["slug"])
-                         SwiftSpinner.hide()
+                        self.userslug = String(owner["slug"]!)
+                        SwiftSpinner.hide()  //we have authenticated
                     }
                     
                     //  let downloadedimage = user["image"] as! CKAsset
@@ -232,7 +233,7 @@ class RegisterViewController: UIViewController {
                                 let jsonDict: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: [])
                                 let curr_user = jsonDict["user"] as? NSDictionary?
                                 let slug = curr_user!!["slug"] as? String
-                                self.userslug = slug
+                                self.userslug = slug!
                                 print("Slug- \(self.userslug)")
             }, failure: { error in
                 
