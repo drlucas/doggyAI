@@ -10,8 +10,11 @@ import UIKit
 import CloudKit
 
 
-class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
+class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
 
+    
+    @IBOutlet var DogTableList: UITableView!
+    
     var date1:NSDate! // this is the date we want to get our activity for
     var mydoglist:[String] = []  // a list of all the slugs that I'm an owner of from cloudkit
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
@@ -19,6 +22,7 @@ class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
     var userrecord:CKRecordID! //the user recordID we got from registration program
     let activityrecord = CKRecord(recordType: "ActivityRecord")
     let dogRecord = CKRecord(recordType: "Dogs")
+    var dogcount:Int = 0 // number of dogs returned from the owner
     
     @IBOutlet var selecteddatelabel: UILabel!
    
@@ -26,13 +30,17 @@ class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         // go list all my dogs using my userslug that was passed to us
         // then select a dog and then select a date, then go get that record
         
         getdoglist()
-    }
+        
+        NSTimer.scheduledTimerWithTimeInterval(3.0, target: self,
+                                               selector: #selector(CheckDailyRecords.updateData), userInfo: nil, repeats: true)
+       
+             }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -50,25 +58,22 @@ class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
     }
     */
 
+    
+    func updateData () {
+        //update table data
+        self.DogTableList.reloadData()
+    
+    }
+    
     func getdoglist ()  {
         //grab all the records from Dogs that have my owner slug
         //let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", userslug)
         //let name = "99745d34-0731-4f43-9285-58026b424e15"
         //let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", name)
        
-       // let localuser = "me:\(self.userslug)"
-      //  print (localuser)
+    
         let predicate = NSPredicate(format: "owner_slug BEGINSWITH %@", self.userslug)
         let query = CKQuery(recordType: "Dogs", predicate: predicate)
-        
-     //  99745d34-0731-4f43-9285-58026b424e15
-     //  99745d34-0731-4f43-9285-58026b424e15
-      //  let reference = CKReference(recordID: userrecord, action: .None)
-  // let predicate = NSPredicate(format: "creatorUserRecordID == %@", reference)
-  // let query = CKQuery(recordType: "Dogs", predicate: predicate)
-        
-        
-       // print ("Query: \(query)")
         publicDB.performQuery(query, inZoneWithID: nil, completionHandler:  { results, error in
             if let err = error {
                 print ("Error with query: \(err)")
@@ -80,12 +85,58 @@ class CheckDailyRecords: UIViewController,EPCalendarPickerDelegate {
             }
                 
             else {
-                print ("User record \(self.userslug) was in CloudKit")
-                print("so lets check to see if it was changed since last checked ")
+                self.dogcount = (results?.count)!
+                print ("Total number of dogs = \(self.dogcount)")
+                for dogs in results! {
+                    let dogslug = (dogs["slug"]!)
+                    print("Dog: \(dogslug)")
+                    self.mydoglist.append(dogslug as! String)
+                   
+                }
+               // print ("User record \(self.userslug) was in CloudKit")
+               // print("so lets check to see if it was changed since last checked ")
+                
             }
+            
         })
-    
+ 
     }
+    
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print ("Table rows: \(self.dogcount)")
+        //DogTableList
+        return self.dogcount
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) ->Int
+    {
+    return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier( "dogslugcell", forIndexPath: indexPath)
+        
+        // Configure the cell...
+        cell.textLabel?.text = self.mydoglist[indexPath.row]
+        
+        return cell
+    }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "dailydetail"
+        {
+            let detailViewController = ((segue.destinationViewController) as! CheckDailyRecords)
+            //let indexPath = self.tvCars!.indexPathForSelectedRow!
+            //let strImageName = car[indexPath.row]
+           // detailViewController.strImageName = strImageName
+          //  detailViewController.title = strImageName
+            print("move to details")
+        }
+    }
+    
     
     
     @IBAction func PickDate(sender: UIButton) {
