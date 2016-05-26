@@ -26,6 +26,7 @@
 		946961191CBF22D8009589FC /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946961181CBF22D8009589FC /* CloudViewController.swift */; };
 		947A6FB21CCC2E560053E1BC /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 947A6FB11CCC2E560053E1BC /* setting.png */; };
 		947A6FCE1CCD752F0053E1BC /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 947A6FC71CCD74FC0053E1BC /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		949ECB201CF48725001A42A4 /* AsyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949ECB1F1CF48725001A42A4 /* AsyncManager.swift */; };
 		94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */; };
 		94F6AC6F1CB0B338006FFB8F /* DogUserStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC6E1CB0B338006FFB8F /* DogUserStructure.swift */; };
 		94F6AC771CB2D5C6006FFB8F /* EPCalendarPicker in Resources */ = {isa = PBXBuildFile; fileRef = 94F6AC761CB2D5C6006FFB8F /* EPCalendarPicker */; };
@@ -201,6 +202,7 @@
 		946961181CBF22D8009589FC /* CloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		947A6FB11CCC2E560053E1BC /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		949ECB1F1CF48725001A42A4 /* AsyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncManager.swift; sourceTree = "<group>"; };
 		94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoggyDetailsViewController.swift; sourceTree = "<group>"; };
 		94F6AC6E1CB0B338006FFB8F /* DogUserStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogUserStructure.swift; sourceTree = "<group>"; };
 		94F6AC761CB2D5C6006FFB8F /* EPCalendarPicker */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EPCalendarPicker; path = /Users/ryan/Downloads/DoggyAI/EPCalendarPicker; sourceTree = "<absolute>"; };
@@ -355,6 +357,7 @@
 				9EA98E991CA5773E0062B2C7 /* Assets.xcassets */,
 				9EA98F091CA74D760062B2C7 /* Main.storyboard */,
 				94035C1F1CE021E300697B5B /* CheckDailyRecords.swift */,
+				949ECB1F1CF48725001A42A4 /* AsyncManager.swift */,
 				94215B271CDD4A56002D32FE /* DogDailyChart.swift */,
 				94052BF51CD9900700CBFDE0 /* DogChart.swift */,
 				9EA98EEC1CA614400062B2C7 /* Services.plist */,
@@ -595,6 +598,7 @@
 				9EA98E921CA5773E0062B2C7 /* ViewController.swift in Sources */,
 				94F6AC891CB33E23006FFB8F /* EPExtensions.swift in Sources */,
 				944C6FA01CC71A38006194B4 /* RegisterViewController.swift in Sources */,
+				949ECB201CF48725001A42A4 /* AsyncManager.swift in Sources */,
 				94F6AC831CB33E23006FFB8F /* EPCalendarCell1.swift in Sources */,
 				944C6FB41CCA5711006194B4 /* SCLExtensions.swift in Sources */,
 				94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */,
@@ -721,6 +725,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.aussies.DoggyAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -737,6 +742,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.aussies.DoggyAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
