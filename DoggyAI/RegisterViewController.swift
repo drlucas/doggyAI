@@ -358,6 +358,7 @@ func loginUser() {
             print ("Prepare to pass user slug to checkdaily")
             destination.userslug = self.userslug
             destination.userrecord = self.userrecord
+            destination.passedtoken = authtoken
 
         }
 

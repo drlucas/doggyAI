@@ -26,6 +26,7 @@
 		946961191CBF22D8009589FC /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946961181CBF22D8009589FC /* CloudViewController.swift */; };
 		947A6FB21CCC2E560053E1BC /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 947A6FB11CCC2E560053E1BC /* setting.png */; };
 		947A6FCE1CCD752F0053E1BC /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 947A6FC71CCD74FC0053E1BC /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9498417D1CFBCC290010918C /* CheckDailyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9498417C1CFBCC290010918C /* CheckDailyTableViewController.swift */; };
 		949ECB201CF48725001A42A4 /* AsyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949ECB1F1CF48725001A42A4 /* AsyncManager.swift */; };
 		94F6AC611CAF3D3F006FFB8F /* DoggyDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */; };
 		94F6AC6F1CB0B338006FFB8F /* DogUserStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC6E1CB0B338006FFB8F /* DogUserStructure.swift */; };
@@ -202,6 +203,7 @@
 		946961181CBF22D8009589FC /* CloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		947A6FB11CCC2E560053E1BC /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		947A6FBF1CCD74FB0053E1BC /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		9498417C1CFBCC290010918C /* CheckDailyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckDailyTableViewController.swift; sourceTree = "<group>"; };
 		949ECB1F1CF48725001A42A4 /* AsyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncManager.swift; sourceTree = "<group>"; };
 		94F6AC601CAF3D3F006FFB8F /* DoggyDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoggyDetailsViewController.swift; sourceTree = "<group>"; };
 		94F6AC6E1CB0B338006FFB8F /* DogUserStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogUserStructure.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				9EA98EA41CA5A2DB0062B2C7 /* SwiftyJSON.swift */,
 				9EA98E991CA5773E0062B2C7 /* Assets.xcassets */,
 				9EA98F091CA74D760062B2C7 /* Main.storyboard */,
+				9498417C1CFBCC290010918C /* CheckDailyTableViewController.swift */,
 				94035C1F1CE021E300697B5B /* CheckDailyRecords.swift */,
 				949ECB1F1CF48725001A42A4 /* AsyncManager.swift */,
 				94215B271CDD4A56002D32FE /* DogDailyChart.swift */,
@@ -610,6 +613,7 @@
 				9EA98E901CA5773E0062B2C7 /* AppDelegate.swift in Sources */,
 				9EA98EA51CA5A2DB0062B2C7 /* SwiftyJSON.swift in Sources */,
 				94052BF61CD9900700CBFDE0 /* DogChart.swift in Sources */,
+				9498417D1CFBCC290010918C /* CheckDailyTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

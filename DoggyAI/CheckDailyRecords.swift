@@ -8,13 +8,14 @@
 
 import UIKit
 import CloudKit
-
+import OAuthSwift
 
 class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
 
     
     @IBOutlet var DogTableList: UITableView!
     
+     var passedtoken: String! //for authentication 
     
     var date1:NSDate! // this is the date we want to get our activity for
     var mydoglist:[String] = []  // a list of all the slugs that I'm an owner of from cloudkit
@@ -29,6 +30,13 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
     @IBOutlet var selecteddatelabel: UILabel!
    
     
+    let oauthswift = OAuth2Swift(
+        consumerKey:    "fdcb4ac3295906a977f6317979ffaab6d11d93e833c1f41ed834c2b0908cdf2c",
+        consumerSecret: "4ca58af6e0b5c9188d17fc92366c86b8f1f4c8bd9e77ef847edc6479487ef120",
+        authorizeUrl:   "https://app.fitbark.com/oauth/authorize",
+        accessTokenUrl: "https://app.fitbark.com/oauth/token",
+        responseType:   "code"
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,39 +132,112 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
         return cell
     }
     
+    //Since the dog's activity for the date selected is NOT in icloud, we need to go try to pull it from the fitbark website and then save it as a record - send in dogslug and date
     
-    //check icloud for the selected date and dog record
+    func getFitBarkDogActivity(dogslug: String, thedate: NSDate,
+                          completion: (return_result: Int) -> Void)  //return_result = 1 have records
+        
+    {
+        //get dog activity based on two dates https://app.fitbark.com/api/v2/activity_series
+        /*
+         {"activity_series":{
+         "slug":"1ba28be9-4e9e-4583-b7d8-b6bb84b17da7",  //Archie's slug
+         "from":"2013-03-02",
+         "to":"2014-09-02",
+         "resolution":"DAILY"
+         }}
+         {"activity_series" =     {
+         records =         (
+         {
+         "activity_value" = 49;
+         date = "2016-04-01 00:00:00";
+         "min_active" = 13;
+         
+         ActivityRecord (cloudkit record format - )
+         activity_list - Int(64) List
+         date - Date/Time
+         minute_activity_list - Int(64) List
+         minute_play_list - Int(64) List
+         minute_rest_list - Int(64) List
+         slug - String
     
- //   static let sharedAsyncManager = AsyncManager()
-   /* func asyncFetchImage(imageName imageName: String,
-                                   completion: (
-        image: UIImage?,
-        status: String) -> ())
-     {
-       let result = UIImage(named: imageName)
-       print("Loading image in background")
-       let status = result != nil ? "image loaded" : "Error loading image"
-       completion(image: result, status: status)
-     }
- 
-     let theAsyncManager = AsyncManager.sharedAsyncManager
-     theAsyncManager.asyncFetchImage(imageName: "wareto_blue_150x115")
-     {
-     (image, status) -> () in
-     print("Beginning completion block")
-     self.theImageView.image = image
-     print("In completion block, status = \(status)")
-     }
-     print("After call to asyncFetchImage")
-     }
- */
+         */
+        let dayTimePeriodFormatter = NSDateFormatter()
+        dayTimePeriodFormatter.dateFormat = "yyyy-MM-dd"
+        let date1 = dayTimePeriodFormatter.stringFromDate(thedate)
+        let dogactivityURL = "https://app.fitbark.com/api/v2/activity_series"
+        let jsonparameters = ["activity_series":
+            ["slug": "\(dogslug)",
+                "from":"\(date1)",
+                 "to":"\(date1)",
+                "resolution":"HOURLY"
+            ]
+        ]
+        
+        //var daily_goals = [DailyGoal] () // an array that will contain all our daily goals
+        oauthswift.client.credential.oauth_token = self.passedtoken
+       
+        oauthswift.client.post(dogactivityURL, parameters: jsonparameters, headers: ["Content-Type":"application/json"],        success: { data, response in
+            let jsonDict: AnyObject! = try? NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers)
+            
+            if let dict = jsonDict as? [String: AnyObject] {
+                
+                var play_list: [Int] =  []
+                var rest_list: [Int] =  []
+                var active_list: [Int] =  []
+                var date_time_list: [String] =  []
+                var fitbarkpoints_list: [Int] =  []
+                
+                if let actseries = dict["activity_series"]!["records"] as? [AnyObject] {
+                
+                   
+                    for (index, dict2) in actseries.enumerate() {
+                        let fbp_value = dict2["activity_value"] as? Int
+                        let act_date = dict2["date"] as? String
+                        let min_active_value = dict2["min_active"] as? Int
+                        let min_play_value = dict2["min_play"] as? Int
+                        let min_rest_value = dict2["min_rest"] as? Int
+                        play_list.append(min_play_value!)
+                        rest_list.append(min_rest_value!)
+                        active_list.append(min_active_value!)
+                        fitbarkpoints_list.append(fbp_value!)
+                        date_time_list.append(act_date!)
+                    }
+                    if (actseries.count != 24) {
+                       print ( "No records")
+                        // put up alert
+                        SCLAlertView().showError("Error", subTitle:"No records in fitbark", closeButtonTitle:"OK")
+                        
+                        completion(return_result: -1 )
+                    }
+                    else {
+                //  print (  actseries.count)
+                    //Go save the record now --
+                    print ("save record")
+                    print (rest_list, active_list, play_list, fitbarkpoints_list, date_time_list, dogslug)
+                    // let dogslug = "1ba28be9-4e9e-4583-b7d8-b6bb84b17da7"
+                    CloudViewController().SaveDailyActivity(dogslug, thedate:date_time_list[0], min_active:active_list, min_play:play_list, min_rest:rest_list, fitbarkpts: fitbarkpoints_list)
+                        completion(return_result: 0 )
+                    }
+                }
+                
+            
+            }
+            
+            }, failure: { error in
+                print("Bad error: \(error)")
+        })
+        
+    }
     
+    
+    
+    
+    //check icloud for the selected date and dog record, then in completion block return info
     func GetDailyActivity(dogslug: String, thedate: NSDate,
                           completion: (return_fitbarkpts: Int, return_minacttotal: Int) -> Void)
-    
 
     {
-
         var fitbptlist:[Int] = []   // the fitbark points we received for each hour
         var minute_active_list:[Int] = []  //the number of minutes active each hour
         var minute_play_list:[Int] = []  //the number of minutes playing each hour
@@ -269,44 +350,50 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
             print ("Date Selected: \(self.date1)")
             print ("Selected Dog: \(self.mydoglist[indexPath.row])")
             
-            // check icloud for records, if records don't exist then get info from fitbark website, if records
-                print("Loading activites from tableview - call out to GetDailyActivity function")
-                //need to use a completion handlder to do this
-            
-           /* let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) in
-                // this is where the completion handler code goes
-                print(response)
-                print(error)
-            })
- */
-            
-            //let activity = self.GetDailyActivity(self.mydoglist[indexPath.row], thedate:self.date1)
-            /*let theAsyncManager = AsyncManager.sharedAsyncManager
-            theAsyncManager.asyncFetchImage(imageName: "wareto_blue_150x115")
-            {
-                (image, status) -> () in
-                print("Beginning completion block")
-                self.theImageView.image = image
-                print("In completion block, status = \(status)")
-            }
- */
-            var counter = 0
+            // check icloud for records, if records don't exist (fitbarkpts = -1) then get info from fitbark website, if records
             let activity = GetDailyActivity(self.mydoglist[indexPath.row], thedate:self.date1) {
                 (return_fitbarkpts, return_minacttotal) -> () in
-                counter = counter + 1
-                print ("fit bark points: \(return_fitbarkpts)")
+                 print ("fit bark points: \(return_fitbarkpts)")
                  print ("minutes of activity: \(return_minacttotal)")
-               print ("counter: \(counter)")
-            }
+                
+                if (return_fitbarkpts == -1) {
+                    let activityFB = self.getFitBarkDogActivity(self.mydoglist[indexPath.row], thedate:self.date1) {
+                        (return_fitbarkstatus) -> () in
+                        
+                        print ("fit bark status \(return_fitbarkstatus)")
+                        //if status =0 no errors
+                        //if status =-1 there was no fitbark records
+                    }
+                    
             
+                }
+            
+            
+            }
             
                 // still do not exist in fitbark, then we probably have no records that old, we should alert the
                 // user and let them know
                 //  self.mydogtopass = self.dogs[indexPath.row]
                  //   print("Fitbark Points: \(activity.return_fitbarkpts) and minutes of activity is \(activity.return_minacttotal)")
             }
+        
+       
+            
+            performSegueWithIdentifier("dailychart", sender: indexPath)
+        
     }
-    
+
+    /*
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     if segue.identifier == "dogdailychart" {
+     print ("Prepare to segue to dog daily chart screen \(thepasseddog.slug)")
+     let destination = segue.destinationViewController as! DogDailyChart
+     destination.dogslug = thepasseddog.slug//self.userslug
+     destination.startdate = date1
+     destination.enddate = date2
+     }
+     }
+ */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "dailydetail"
