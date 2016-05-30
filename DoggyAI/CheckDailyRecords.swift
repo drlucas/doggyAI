@@ -27,6 +27,12 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
     var dogcount:Int = 0 // number of dogs returned from the owner
       var my_fitbarkpts:Int = 0 //used to return a total
     var my_minacttotal:Int = 0
+    var pass_play_list: [Int] =  []
+    var pass_rest_list: [Int] =  []
+    var pass_active_list: [Int] =  []
+    var mydogtopass = ""
+    var mychartdate:NSDate!
+    
     @IBOutlet var selecteddatelabel: UILabel!
    
     
@@ -274,6 +280,10 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
                         
                         //  print("Dog Owner  token date: \(activity["fitbarkpts"])")
                         //   fitbptlist = Intactivity["fitbarkpts"]
+                        //for passing to charts 
+                        self.pass_play_list = minute_play_list
+                        self.pass_rest_list = minute_rest_list
+                        self.pass_active_list = minute_active_list
                     }
                    // print("List of points: \(fitbptlist)")
                     // print("MInutes of active: \(self.minute_active_list)")
@@ -344,30 +354,34 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
         
         if self.date1 == nil {
             print ("No date")
+            SCLAlertView().showError("Error", subTitle:"You need a date to continue ", closeButtonTitle:"OK")
+
         }
         else {
             // we have dog selected from table and we have a date in the past so get the dog's activity 
             print ("Date Selected: \(self.date1)")
             print ("Selected Dog: \(self.mydoglist[indexPath.row])")
+            self.mydogtopass = self.mydoglist[indexPath.row]
             
             // check icloud for records, if records don't exist (fitbarkpts = -1) then get info from fitbark website, if records
-            let activity = GetDailyActivity(self.mydoglist[indexPath.row], thedate:self.date1) {
+                GetDailyActivity(self.mydoglist[indexPath.row], thedate:self.date1) {
                 (return_fitbarkpts, return_minacttotal) -> () in
                  print ("fit bark points: \(return_fitbarkpts)")
                  print ("minutes of activity: \(return_minacttotal)")
                 
                 if (return_fitbarkpts == -1) {
-                    let activityFB = self.getFitBarkDogActivity(self.mydoglist[indexPath.row], thedate:self.date1) {
+                    print ("Do do fitbark activity lookup")
+
+                    self.getFitBarkDogActivity(self.mydoglist[indexPath.row], thedate:self.date1) {
                         (return_fitbarkstatus) -> () in
                         
                         print ("fit bark status \(return_fitbarkstatus)")
                         //if status =0 no errors
                         //if status =-1 there was no fitbark records
                     }
-                    
-            
                 }
-            
+                self.performSegueWithIdentifier("dailychart", sender: indexPath)
+               
             
             }
             
@@ -378,35 +392,26 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
             }
         
        
-            
-            performSegueWithIdentifier("dailychart", sender: indexPath)
+        
         
     }
 
-    /*
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     if segue.identifier == "dogdailychart" {
-     print ("Prepare to segue to dog daily chart screen \(thepasseddog.slug)")
-     let destination = segue.destinationViewController as! DogDailyChart
-     destination.dogslug = thepasseddog.slug//self.userslug
-     destination.startdate = date1
-     destination.enddate = date2
-     }
-     }
- */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == "dailydetail"
+        
+        if segue.identifier == "dailychart"
         {
-            let detailViewController = ((segue.destinationViewController) as! CheckDailyRecords)
-            //let indexPath = self.tvCars!.indexPathForSelectedRow!
-            //let strImageName = car[indexPath.row]
-           // detailViewController.strImageName = strImageName
-          //  detailViewController.title = strImageName
+            let detailViewController = ((segue.destinationViewController) as! CheckDailyTableViewController)
             print("move to details")
-        }
+            detailViewController.dogslug = self.mydogtopass
+            detailViewController.chartdate = self.date1
+            detailViewController.pass_play_list = self.pass_play_list
+            detailViewController.pass_rest_list = self.pass_rest_list
+            detailViewController.pass_active_list = self.pass_active_list
+                  }
     }
     
+
     
     
     @IBAction func PickDate(sender: UIButton) {
@@ -442,6 +447,11 @@ class CheckDailyRecords:  UIViewController,EPCalendarPickerDelegate {
             
         }
     
+    }
+    
+    @IBAction func cancelfromCheckDailyRecords(segue:UIStoryboardSegue) {
+        print ("go back from charting")
+        
     }
     
 }
