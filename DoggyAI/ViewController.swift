@@ -255,9 +255,13 @@ class ViewController: UIViewController {
                     let dogweight = item["dog"]["weight"].int
                     let doggender = item["dog"]["gender"].stringValue
                     let dogbirth = item["dog"]["birth"].stringValue
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                    let dogbday = dateFormatter.dateFromString( dogbirth )
                   //  print("Dog name: \(dogname)")
                   //  print("Dog slug: \(dogslug)")
-                    let mydog = Dog(birth:dogbirth, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"", owner:"")
+                    let mydog = Dog(birth:dogbday!, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"", owner:"")
                    // self.dogs[self.ownderdogcount].name = dogname
                     // self.dogs[self.ownderdogcount].slug = dogslug
                     self.dogs.append(mydog)
@@ -347,7 +351,14 @@ func GetOwnerDogs(userslug: String) {
                     let breed1id = item["dog"]["breed1"]["id"].int
                     let breed1name = item["dog"]["breed1"]["name"].stringValue
                     print ("Breed: \(breed1name)")
-                    let mydog = Dog(birth:dogbirth, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"", owner:userslug)
+                    print ("bday: \(dogbirth)")
+                   // let strDate = "2015-11-01T00:00:00Z" // "2015-10-06T15:42:34Z"
+                    let dateFormatter = NSDateFormatter()
+                     dateFormatter.dateFormat = "yyyy-MM-dd"
+                    //hh:mm:ss"
+                    let dogbday = dateFormatter.dateFromString(dogbirth)
+                    print ("bday2: \(dogbday)")
+                    let mydog = Dog(birth:dogbday!, gender:doggender, weight:dogweight!, name: dogname, slug:dogslug, image:"", owner:userslug)
                     self.dogs.append(mydog)
                     self.ownderdogcount = self.ownderdogcount + 1
                 }

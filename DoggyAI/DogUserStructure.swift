@@ -9,7 +9,8 @@
 import UIKit
 
 struct Dog {
-    var birth = String();
+   // var birth = String();
+    var birth = NSDate();
     var gender = String();
     var weight = Int()
     var name = String();

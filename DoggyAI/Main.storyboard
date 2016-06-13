@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G7b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bv5-oT-dlG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bv5-oT-dlG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -136,10 +136,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dogslugcell" id="mK2-HO-sb6">
-                                        <rect key="frame" x="0.0" y="49.5" width="397" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="397" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mK2-HO-sb6" id="VgR-5P-EoT">
-                                            <rect key="frame" x="0.0" y="0.0" width="397" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="397" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -291,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRV-2C-B0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-221" y="726"/>
+            <point key="canvasLocation" x="-85" y="864"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="gbZ-xW-Hi0">
@@ -325,7 +325,7 @@
                                         <rect key="frame" x="0.0" y="28" width="468" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0zV-UC-PZc" id="qi6-4p-mcT">
-                                            <rect key="frame" x="0.0" y="0.0" width="468" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="468" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOh-pM-LEw">
@@ -442,7 +442,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rwx-1u-CPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZfD-Rt-vem" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="629" y="385"/>
+            <point key="canvasLocation" x="703" y="286"/>
         </scene>
         <!--Doggy Details View Controller-->
         <scene sceneID="fDs-x9-jwn">
@@ -457,17 +457,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0t-Yc-LBW">
-                                <rect key="frame" x="220" y="48" width="160" height="160"/>
+                                <rect key="frame" x="20" y="12" width="160" height="160"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-rE-oAK">
-                                <rect key="frame" x="113" y="257" width="58" height="30"/>
+                                <rect key="frame" x="61" y="301" width="58" height="30"/>
                                 <state key="normal" title="Go Back"/>
                                 <connections>
                                     <segue destination="Iwr-fi-2La" kind="unwind" unwindAction="canceltoViewContoller:" id="mTb-93-5Me"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dog Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y95-rK-Iyz">
-                                <rect key="frame" x="0.0" y="19" width="600" height="21"/>
+                                <rect key="frame" x="20" y="180" width="160" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -504,7 +504,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhK-lH-qGH">
-                                <rect key="frame" x="282" y="257" width="98" height="30"/>
+                                <rect key="frame" x="267" y="299" width="98" height="30"/>
                                 <state key="normal" title="Save Changes"/>
                                 <connections>
                                     <segue destination="Iwr-fi-2La" kind="unwind" unwindAction="saveDogDetails:" id="pb2-bu-fxe"/>
@@ -517,12 +517,35 @@
                                     <segue destination="DDP-cn-WDb" kind="presentation" identifier="dogdailychart" id="X5r-9F-cmW"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kxd-Dl-lAv">
+                                <rect key="frame" x="193" y="12" width="172" height="160"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfG-l6-FeL">
+                                <rect key="frame" x="262" y="180" width="103" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days to Birth Day:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PxM-Np-v0x">
+                                <rect key="frame" x="19" y="238" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="365" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncd-eO-If9">
+                                <rect key="frame" x="176" y="238" width="111" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="DaystoBday" destination="Ncd-eO-If9" id="KTH-Jb-NCK"/>
                         <outlet property="dognamelabel" destination="y95-rK-Iyz" id="oWc-z3-CnB"/>
                         <outlet property="enddate" destination="2BT-IB-0C3" id="MWU-IQ-Xfi"/>
+                        <outlet property="lastlocationmap" destination="Kxd-Dl-lAv" id="QNR-O9-NQD"/>
                         <outlet property="startdate" destination="tJY-ba-cFV" id="mkX-dg-Ugg"/>
                         <outlet property="thedogpic" destination="S0t-Yc-LBW" id="O7J-t4-RuY"/>
                     </connections>
@@ -530,7 +553,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fD6-Nm-hyR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Iwr-fi-2La" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1359" y="-558"/>
+            <point key="canvasLocation" x="1525" y="-628"/>
         </scene>
         <!--Dog Daily Chart-->
         <scene sceneID="vM7-r6-Th5">

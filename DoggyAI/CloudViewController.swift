@@ -181,6 +181,7 @@ class CloudViewController: UIViewController {
         dogRecord["last_sync"] = NSDate()
         dogRecord["owner_slug"] = dog2save.owner
         dogRecord["slug"] = dog2save.slug
+        dogRecord["birth"] = dog2save.birth
 
         publicDB.saveRecord(dogRecord, completionHandler: ({returnRecord, error in
                 if let err = error {

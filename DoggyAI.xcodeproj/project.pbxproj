@@ -11,7 +11,6 @@
 		94052BF61CD9900700CBFDE0 /* DogChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94052BF51CD9900700CBFDE0 /* DogChart.swift */; };
 		94215B281CDD4A56002D32FE /* DogDailyChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94215B271CDD4A56002D32FE /* DogDailyChart.swift */; };
 		94215B3C1CE0047A002D32FE /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94215B3B1CE0047A002D32FE /* SwiftSpinner.swift */; };
-		943E62EA1CAEEE9900177CD4 /* Prephirences.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 943E62E21CAEE4BA00177CD4 /* Prephirences.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		944C6FA01CC71A38006194B4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6F9F1CC71A38006194B4 /* RegisterViewController.swift */; };
 		944C6FB21CCA5711006194B4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 944C6FAF1CCA5711006194B4 /* Info.plist */; };
 		944C6FB31CCA5711006194B4 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944C6FB01CCA5711006194B4 /* SCLAlertView.swift */; };
@@ -35,7 +34,9 @@
 		94F6AC871CB33E23006FFB8F /* EPCalendarHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94F6AC801CB33E23006FFB8F /* EPCalendarHeaderView.xib */; };
 		94F6AC881CB33E23006FFB8F /* EPCalendarPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC811CB33E23006FFB8F /* EPCalendarPicker.swift */; };
 		94F6AC891CB33E23006FFB8F /* EPExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F6AC821CB33E23006FFB8F /* EPExtensions.swift */; };
-		9E66F33C1D050DBC00625A14 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E66F3351D0508BC00625A14 /* Charts.framework */; };
+		9B9A58A81D0EDA390078A1A6 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9A585F1D0ED7AB0078A1A6 /* Charts.framework */; };
+		9B9A58A91D0EDA390078A1A6 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9A58891D0ED7C80078A1A6 /* OAuthSwift.framework */; };
+		9B9A58AA1D0EDA390078A1A6 /* Prephirences.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9A589F1D0ED7D70078A1A6 /* Prephirences.framework */; };
 		9EA98E901CA5773E0062B2C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98E8F1CA5773E0062B2C7 /* AppDelegate.swift */; };
 		9EA98E921CA5773E0062B2C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA98E911CA5773E0062B2C7 /* ViewController.swift */; };
 		9EA98E9A1CA5773E0062B2C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EA98E991CA5773E0062B2C7 /* Assets.xcassets */; };
@@ -50,82 +51,117 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		943E62DF1CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
+		9B9A585E1D0ED7AB0078A1A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C42114DB1AE7D84900A09DD9;
-			remoteInfo = PrephirencesiOS;
-		};
-		943E62E11CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C42114FE1AE7D8E200A09DD9;
-			remoteInfo = PrephirencesMacOSX;
-		};
-		943E62E31CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07FC415E1BE66517005F195C;
-			remoteInfo = PrephirencesWatchos;
-		};
-		943E62E51CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07FC417A1BE670BF005F195C;
-			remoteInfo = PrephirencesTvOS;
-		};
-		943E62E71CAEE4BA00177CD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C4FF650B1B6B7C7300BFE4F4;
-			remoteInfo = PrephirencesiOSTests;
-		};
-		9E66F3111D05065300625A14 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9E66F30C1D05065300625A14 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F435027A1A6791B200038A29;
-			remoteInfo = OAuthSwift;
-		};
-		9E66F3131D05065300625A14 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9E66F30C1D05065300625A14 /* OAuthSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F451E3C5195B8CD80051434C;
-			remoteInfo = OAuthSwiftDemo;
-		};
-		9E66F3341D0508BC00625A14 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */;
+			containerPortal = 9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
 			remoteInfo = "Charts-iOS";
 		};
-		9E66F3361D0508BC00625A14 /* PBXContainerItemProxy */ = {
+		9B9A58601D0ED7AB0078A1A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */;
+			containerPortal = 9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
 			remoteInfo = "Charts-TV";
 		};
-		9E66F3381D0508BC00625A14 /* PBXContainerItemProxy */ = {
+		9B9A58621D0ED7AB0078A1A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */;
+			containerPortal = 9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 65B3F5BF1C7370BE000983D0;
 			remoteInfo = "Charts-OSX";
 		};
-		9E66F33A1D0508BC00625A14 /* PBXContainerItemProxy */ = {
+		9B9A58641D0ED7AB0078A1A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */;
+			containerPortal = 9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
 			remoteInfo = ChartsTests;
+		};
+		9B9A58881D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F435027A1A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
+		9B9A588A1D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F451E3C5195B8CD80051434C;
+			remoteInfo = OAuthSwiftDemo;
+		};
+		9B9A588C1D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
+			remoteInfo = OAuthSwiftOSX;
+		};
+		9B9A588E1D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
+			remoteInfo = OAuthSwiftOSXDemo;
+		};
+		9B9A58901D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4B6EE1E1BF74CE300443596;
+			remoteInfo = OAuthSwiftTVOS;
+		};
+		9B9A58921D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C40890C01C11B37000E3146A;
+			remoteInfo = OAuthSwiftWatchOS;
+		};
+		9B9A58941D0ED7C80078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
+			remoteInfo = OAuthSwiftTests;
+		};
+		9B9A589E1D0ED7D70078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42114DB1AE7D84900A09DD9;
+			remoteInfo = PrephirencesiOS;
+		};
+		9B9A58A01D0ED7D70078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42114FE1AE7D8E200A09DD9;
+			remoteInfo = PrephirencesMacOSX;
+		};
+		9B9A58A21D0ED7D70078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07FC415E1BE66517005F195C;
+			remoteInfo = PrephirencesWatchos;
+		};
+		9B9A58A41D0ED7D70078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07FC417A1BE670BF005F195C;
+			remoteInfo = PrephirencesTvOS;
+		};
+		9B9A58A61D0ED7D70078A1A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4FF650B1B6B7C7300BFE4F4;
+			remoteInfo = PrephirencesiOSTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -136,7 +172,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				943E62EA1CAEEE9900177CD4 /* Prephirences.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,7 +183,6 @@
 		94052BF51CD9900700CBFDE0 /* DogChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogChart.swift; sourceTree = "<group>"; };
 		94215B271CDD4A56002D32FE /* DogDailyChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogDailyChart.swift; sourceTree = "<group>"; };
 		94215B3B1CE0047A002D32FE /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
-		943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Prephirences.xcodeproj; path = "../Prephirences-master/Prephirences.xcodeproj"; sourceTree = "<group>"; };
 		944C6F9F1CC71A38006194B4 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		944C6FAF1CCA5711006194B4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944C6FB01CCA5711006194B4 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
@@ -173,8 +207,9 @@
 		94F6AC801CB33E23006FFB8F /* EPCalendarHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EPCalendarHeaderView.xib; path = EPCalendarPicker/EPCalendarHeaderView.xib; sourceTree = "<group>"; };
 		94F6AC811CB33E23006FFB8F /* EPCalendarPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPCalendarPicker.swift; path = EPCalendarPicker/EPCalendarPicker.swift; sourceTree = "<group>"; };
 		94F6AC821CB33E23006FFB8F /* EPExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EPExtensions.swift; path = EPCalendarPicker/EPExtensions.swift; sourceTree = "<group>"; };
-		9E66F30C1D05065300625A14 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = ../OAuthSwift/OAuthSwift.xcodeproj; sourceTree = "<group>"; };
-		9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../xCodeSource/Charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
+		9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "../xCodeSource/OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
+		9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Prephirences.xcodeproj; path = "../xCodeSource/Prephirences-master/Prephirences.xcodeproj"; sourceTree = "<group>"; };
 		9EA98E8C1CA5773E0062B2C7 /* DoggyAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoggyAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA98E8F1CA5773E0062B2C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EA98E911CA5773E0062B2C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -195,7 +230,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E66F33C1D050DBC00625A14 /* Charts.framework in Frameworks */,
+				9B9A58A81D0EDA390078A1A6 /* Charts.framework in Frameworks */,
+				9B9A58A91D0EDA390078A1A6 /* OAuthSwift.framework in Frameworks */,
+				9B9A58AA1D0EDA390078A1A6 /* Prephirences.framework in Frameworks */,
 				944C6FB81CCA57F9006194B4 /* Foundation.framework in Frameworks */,
 				944C6FB61CCA57F2006194B4 /* UIKit.framework in Frameworks */,
 				946961121CBD22C0009589FC /* MapKit.framework in Frameworks */,
@@ -206,18 +243,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		943E62D81CAEE4BA00177CD4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				943E62E01CAEE4BA00177CD4 /* Prephirences.framework */,
-				943E62E21CAEE4BA00177CD4 /* Prephirences.framework */,
-				943E62E41CAEE4BA00177CD4 /* Prephirences.framework */,
-				943E62E61CAEE4BA00177CD4 /* Prephirences.framework */,
-				943E62E81CAEE4BA00177CD4 /* PrephirencesiOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		944C6F9C1CBFC988006194B4 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,22 +277,39 @@
 			name = "calendar files";
 			sourceTree = "<group>";
 		};
-		9E66F30D1D05065300625A14 /* Products */ = {
+		9B9A58581D0ED7AB0078A1A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E66F3121D05065300625A14 /* OAuthSwift.framework */,
-				9E66F3141D05065300625A14 /* OAuthSwiftDemo.app */,
+				9B9A585F1D0ED7AB0078A1A6 /* Charts.framework */,
+				9B9A58611D0ED7AB0078A1A6 /* Charts.framework */,
+				9B9A58631D0ED7AB0078A1A6 /* Charts.framework */,
+				9B9A58651D0ED7AB0078A1A6 /* ChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9E66F32E1D0508BC00625A14 /* Products */ = {
+		9B9A587F1D0ED7C80078A1A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E66F3351D0508BC00625A14 /* Charts.framework */,
-				9E66F3371D0508BC00625A14 /* Charts.framework */,
-				9E66F3391D0508BC00625A14 /* Charts.framework */,
-				9E66F33B1D0508BC00625A14 /* ChartsTests.xctest */,
+				9B9A58891D0ED7C80078A1A6 /* OAuthSwift.framework */,
+				9B9A588B1D0ED7C80078A1A6 /* OAuthSwiftDemo.app */,
+				9B9A588D1D0ED7C80078A1A6 /* OAuthSwift.framework */,
+				9B9A588F1D0ED7C80078A1A6 /* OAuthSwiftOSXDemo.app */,
+				9B9A58911D0ED7C80078A1A6 /* OAuthSwift.framework */,
+				9B9A58931D0ED7C80078A1A6 /* OAuthSwift.framework */,
+				9B9A58951D0ED7C80078A1A6 /* OAuthSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9B9A58971D0ED7D70078A1A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9B9A589F1D0ED7D70078A1A6 /* Prephirences.framework */,
+				9B9A58A11D0ED7D70078A1A6 /* Prephirences.framework */,
+				9B9A58A31D0ED7D70078A1A6 /* Prephirences.framework */,
+				9B9A58A51D0ED7D70078A1A6 /* Prephirences.framework */,
+				9B9A58A71D0ED7D70078A1A6 /* PrephirencesiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,14 +317,14 @@
 		9EA98E831CA5773E0062B2C7 = {
 			isa = PBXGroup;
 			children = (
-				9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */,
+				9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */,
+				9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */,
+				9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */,
 				944C6FB71CCA57F9006194B4 /* Foundation.framework */,
 				944C6FB51CCA57F2006194B4 /* UIKit.framework */,
 				944C6FAE1CCA5711006194B4 /* SCLAlertView */,
 				946961111CBD22C0009589FC /* MapKit.framework */,
 				9469610F1CBD2283009589FC /* CloudKit.framework */,
-				9E66F30C1D05065300625A14 /* OAuthSwift.xcodeproj */,
-				943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */,
 				9EA98E8E1CA5773E0062B2C7 /* DoggyAI */,
 				9EA98E8D1CA5773E0062B2C7 /* Products */,
 			);
@@ -386,16 +428,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9E66F32E1D0508BC00625A14 /* Products */;
-					ProjectRef = 9E66F32D1D0508BC00625A14 /* Charts.xcodeproj */;
+					ProductGroup = 9B9A58581D0ED7AB0078A1A6 /* Products */;
+					ProjectRef = 9B9A58571D0ED7AB0078A1A6 /* Charts.xcodeproj */;
 				},
 				{
-					ProductGroup = 9E66F30D1D05065300625A14 /* Products */;
-					ProjectRef = 9E66F30C1D05065300625A14 /* OAuthSwift.xcodeproj */;
+					ProductGroup = 9B9A587F1D0ED7C80078A1A6 /* Products */;
+					ProjectRef = 9B9A587E1D0ED7C80078A1A6 /* OAuthSwift.xcodeproj */;
 				},
 				{
-					ProductGroup = 943E62D81CAEE4BA00177CD4 /* Products */;
-					ProjectRef = 943E62D71CAEE4BA00177CD4 /* Prephirences.xcodeproj */;
+					ProductGroup = 9B9A58971D0ED7D70078A1A6 /* Products */;
+					ProjectRef = 9B9A58961D0ED7D70078A1A6 /* Prephirences.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -406,81 +448,116 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		943E62E01CAEE4BA00177CD4 /* Prephirences.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Prephirences.framework;
-			remoteRef = 943E62DF1CAEE4BA00177CD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		943E62E21CAEE4BA00177CD4 /* Prephirences.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Prephirences.framework;
-			remoteRef = 943E62E11CAEE4BA00177CD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		943E62E41CAEE4BA00177CD4 /* Prephirences.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Prephirences.framework;
-			remoteRef = 943E62E31CAEE4BA00177CD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		943E62E61CAEE4BA00177CD4 /* Prephirences.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Prephirences.framework;
-			remoteRef = 943E62E51CAEE4BA00177CD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		943E62E81CAEE4BA00177CD4 /* PrephirencesiOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PrephirencesiOSTests.xctest;
-			remoteRef = 943E62E71CAEE4BA00177CD4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9E66F3121D05065300625A14 /* OAuthSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = OAuthSwift.framework;
-			remoteRef = 9E66F3111D05065300625A14 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9E66F3141D05065300625A14 /* OAuthSwiftDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = OAuthSwiftDemo.app;
-			remoteRef = 9E66F3131D05065300625A14 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9E66F3351D0508BC00625A14 /* Charts.framework */ = {
+		9B9A585F1D0ED7AB0078A1A6 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 9E66F3341D0508BC00625A14 /* PBXContainerItemProxy */;
+			remoteRef = 9B9A585E1D0ED7AB0078A1A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9E66F3371D0508BC00625A14 /* Charts.framework */ = {
+		9B9A58611D0ED7AB0078A1A6 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 9E66F3361D0508BC00625A14 /* PBXContainerItemProxy */;
+			remoteRef = 9B9A58601D0ED7AB0078A1A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9E66F3391D0508BC00625A14 /* Charts.framework */ = {
+		9B9A58631D0ED7AB0078A1A6 /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 9E66F3381D0508BC00625A14 /* PBXContainerItemProxy */;
+			remoteRef = 9B9A58621D0ED7AB0078A1A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9E66F33B1D0508BC00625A14 /* ChartsTests.xctest */ = {
+		9B9A58651D0ED7AB0078A1A6 /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = 9E66F33A1D0508BC00625A14 /* PBXContainerItemProxy */;
+			remoteRef = 9B9A58641D0ED7AB0078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58891D0ED7C80078A1A6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9B9A58881D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A588B1D0ED7C80078A1A6 /* OAuthSwiftDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftDemo.app;
+			remoteRef = 9B9A588A1D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A588D1D0ED7C80078A1A6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9B9A588C1D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A588F1D0ED7C80078A1A6 /* OAuthSwiftOSXDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftOSXDemo.app;
+			remoteRef = 9B9A588E1D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58911D0ED7C80078A1A6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9B9A58901D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58931D0ED7C80078A1A6 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 9B9A58921D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58951D0ED7C80078A1A6 /* OAuthSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuthSwiftTests.xctest;
+			remoteRef = 9B9A58941D0ED7C80078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A589F1D0ED7D70078A1A6 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 9B9A589E1D0ED7D70078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58A11D0ED7D70078A1A6 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 9B9A58A01D0ED7D70078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58A31D0ED7D70078A1A6 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 9B9A58A21D0ED7D70078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58A51D0ED7D70078A1A6 /* Prephirences.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prephirences.framework;
+			remoteRef = 9B9A58A41D0ED7D70078A1A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9B9A58A71D0ED7D70078A1A6 /* PrephirencesiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PrephirencesiOSTests.xctest;
+			remoteRef = 9B9A58A61D0ED7D70078A1A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

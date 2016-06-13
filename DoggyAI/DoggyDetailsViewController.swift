@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
+import CloudKit 
 
-
-class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate  {
+class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate, MKMapViewDelegate, CLLocationManagerDelegate   {
  
+    
+    @IBOutlet var lastlocationmap: MKMapView!
     
     @IBOutlet weak var enddate: UILabel!
     @IBOutlet weak var startdate: UILabel!
@@ -22,26 +26,133 @@ class DoggyDetailsViewController: UIViewController, EPCalendarPickerDelegate  {
     var date2:NSDate!
     var userslug:String! // the string for the user that was passed over from previous controller
     
+    @IBOutlet var DaystoBday: UILabel!
+    
+    let dogRecord = CKRecord(recordType: "Dogs")
+    let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+    var userrecord:CKRecordID!
+    var locationManager = CLLocationManager()
+    
+    
     @IBOutlet var thedogpic: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        date1 = NSDate()
-        date2 = NSDate()
-        
+    
         print("Im in the dog table view now")
         print("Passed dog: \(thepasseddog.slug)")
+        print("Dog's birth day is: \(thepasseddog.birth)")
         
         dognamelabel.text = thepasseddog.name
         let decodedData = NSData(base64EncodedString:  thepasseddog.image, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
         let decodedImage = UIImage(data: decodedData!)
         self.thedogpic.image = decodedImage
         
+
+        //Configure and start the location manager
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest // GPS
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        
+        
+     
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([.Day, .Hour, .Minute, .Second], fromDate: thepasseddog.birth, toDate:NSDate(), options: [])
+            
+            var dayText = String(components.day) + "d "
+            var hourText = String(components.hour) + "h "
+            
+            // Hide day and hour if they are zero
+            if components.day <= 0 {
+                dayText = ""
+                if components.hour <= 0 {
+                    hourText = ""
+                }
+            }
+            
+            DaystoBday.text = dayText + hourText + String(components.minute) + "m " + String(components.second) + "s"
+        // DaystoBday.text = String(components.day) + "d"
+        //dayText + hourText + String(components.minute) + "m " + String(components.second) + "s"
+    
+    }
+
+    func timeBetween(startDate: NSDate, endDate: NSDate) -> [Int]
+    {
+    let calendar = NSCalendar.currentCalendar()
+    let components = calendar.components([.Day, .Month, .Year], fromDate: startDate, toDate: endDate, options: [])
+    return [components.day, components.hour, components.minute]
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        self.locationManager.stopUpdatingLocation()
+        
+        let latestLocation = locations.last
+        
+        let latitude = String(format: "%.4f", latestLocation!.coordinate.latitude)
+        let longitude = String(format: "%.4f", latestLocation!.coordinate.longitude)
+        let userLocation: CLLocation = locations[0]
+      
+        let center = CLLocationCoordinate2D(latitude: latestLocation!.coordinate.latitude, longitude: latestLocation!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.lastlocationmap.setRegion(region, animated: true)
+        print("Latitude: \(latitude)")
+        print("Longitude: \(longitude)")
+        SaveDogLocation(thepasseddog, location: latestLocation!)
+    }
+   
+   
+
+func SaveDogLocation(dog2save: Dog, location:CLLocation ) {
+        
+        /*
+         Matching Records where Record's location is within 100 meters of the given location:
+         var location = new CLLocation(37.783,-122.404);
+         var predicate = NSPredicate.FromFormat(string.Format("distanceToLocation:fromLocation(Location,{0}) < 100", location));
+         */
+
+        //get the recordID for the dogslug (which is thepasseddog.slug)
+        //then replace the Dog lastlocation record field with the new loaction
+        
+        let predicate = NSPredicate(format: "slug BEGINSWITH %@", dog2save.slug)
+        print("Dog bday: \(dog2save.birth)")
+        let query = CKQuery(recordType: "Dogs", predicate: predicate)
+        publicDB.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) in
+            if error != nil {
+                print("Error querying records: \(error!.localizedDescription)")
+            } else {
+                if records!.count > 0 {
+                    let record = records!.first! as CKRecord
+                    // Now you have grabbed your existing record from iCloud
+                    // Apply whatever changes you want
+                    record.setObject(location, forKey: "lastlocation")
+                    
+                    // Save this record again
+                    self.publicDB.saveRecord(record, completionHandler: { (savedRecord, saveError)in
+                        if saveError != nil {
+                            print("Error saving record: \(saveError!.localizedDescription)")
+                        } else {
+                            print("Successfully updated record with new location!")
+                        }
+                    })
+                }
+            }
+        })
+        
+    }
+    
+    
         
     
-
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        lastlocationmap.showsUserLocation = (status == .AuthorizedAlways)
     }
+    
+
 
     @IBAction func showcalendar(sender: UIButton) {
         print ("show calendar")
